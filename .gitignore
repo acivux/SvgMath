@@ -4,40 +4,27 @@
 # User-specific files
 *.suo
 *.user
-*.userosscache
 *.sln.docstates
 
 # Build results
+
 [Dd]ebug/
-[Dd]ebugPublic/
 [Rr]elease/
-[Rr]eleases/
 x64/
-x86/
 build/
-bld/
 [Bb]in/
 [Oo]bj/
 
-# Roslyn cache directories
-*.ide/
+# Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
+!packages/*/build/
+
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
-#NUNIT
-*.VisualState.xml
-TestResult.xml
-
-# Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
-dlldata.c
-
 *_i.c
 *_p.c
-*_i.h
 *.ilk
 *.meta
 *.obj
@@ -57,11 +44,16 @@ dlldata.c
 *.vssscc
 .builds
 *.pidb
+<<<<<<< HEAD
 *.svclog
 *.scc
 
 # Chutzpah Test files
 _Chutzpah*
+
+=======
+*.log
+*.scc
 
 # Visual C++ cache files
 ipch/
@@ -75,9 +67,6 @@ ipch/
 *.psess
 *.vsp
 *.vspx
-
-# TFS 2012 Local Workspace
-$tf/
 
 # Guidance Automation Toolkit
 *.gpState
@@ -155,10 +144,9 @@ ClientBin/
 ~$*
 *~
 *.dbmdl
-*.dbproj.schemaview
+*.[Pp]ublish.xml
 *.pfx
 *.publishsettings
-node_modules/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -172,6 +160,7 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 
 # SQL Server files
+<<<<<<< HEAD
 *.mdf
 *.ldf
 
@@ -221,6 +210,7 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+<<<<<<< HEAD
 # Windows Installer files
 *.cab
 *.msi
