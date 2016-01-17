@@ -47,11 +47,11 @@ namespace SvgMath
             //Matching Python
             //Pass
         }
-		public static void GMath(MathNode node, XElement output)
+        public static void GMath(MathNode node, XElement output)
         {
             GMRow(node, output);
         }
-		public static void GMRow(MathNode node, XElement output)
+        public static void GMRow(MathNode node, XElement output)
         {
             DrawBox(node, output);
             if (node.Children.Count == 0)
@@ -69,42 +69,42 @@ namespace SvgMath
                 offset += ch.Width + ch.RightSpace;
             }
         }
-		public static void GMPhantom(MathNode node, XElement output)
+        public static void GMPhantom(MathNode node, XElement output)
         {
             //Pass
         }
-		public static void GMNone(MathNode node, XElement output)
+        public static void GMNone(MathNode node, XElement output)
         {
             //Pass
         }
-		public static void GMAction(MathNode node, XElement output)
+        public static void GMAction(MathNode node, XElement output)
         {
             if (node.Base != null)
                 node.Base.Draw(output);
         }
-		public static void GMPrescripts(MathNode node, XElement output)
+        public static void GMPrescripts(MathNode node, XElement output)
         {
             //Pass
         }
-		public static void GMStyle(MathNode node, XElement output)
+        public static void GMStyle(MathNode node, XElement output)
         {
             GMRow(node, output);
         }
-		public static void GMFenced(MathNode node, XElement output)
+        public static void GMFenced(MathNode node, XElement output)
         {
             GMRow(node, output);
         }
-		public static void GMError(MathNode node, XElement output)
+        public static void GMError(MathNode node, XElement output)
         {
             DrawBox(node, output, node.BorderWidth, "red");
             DrawTranslatedNode(node.Base, output, node.BorderWidth, 0);
         }
-		public static void GMPAdded(MathNode node, XElement output)
+        public static void GMPAdded(MathNode node, XElement output)
         {
             DrawBox(node, output);
             DrawTranslatedNode(node.Base, output, node.LeftPadding, 0);
         }
-		public static void GMEnclose(MathNode node, XElement output)
+        public static void GMEnclose(MathNode node, XElement output)
         {
             switch(node.Decoration)
             {
@@ -133,7 +133,7 @@ namespace SvgMath
                     break;
             }
         }
-		public static void GMFrac(MathNode node, XElement output)
+        public static void GMFrac(MathNode node, XElement output)
         {
             DrawBox(node, output);
             if (node.GetProperty("bevelled") == "true")
@@ -177,31 +177,31 @@ namespace SvgMath
             }
             DrawLine(output, node.Color, node.RuleWidth, x1, y1, x2, y2, new Dictionary<string, string>() { { "stroke-linecap", "butt" } });
         }
-		public static void GMo(MathNode node, XElement output)
+        public static void GMo(MathNode node, XElement output)
         {
             DrawSVGText(node, output);
         }
-		public static void GMi(MathNode node, XElement output)
+        public static void GMi(MathNode node, XElement output)
         {
             DrawSVGText(node, output);
         }
-		public static void GMn(MathNode node, XElement output)
+        public static void GMn(MathNode node, XElement output)
         {
             DrawSVGText(node, output);
         }
-		public static void GMText(MathNode node, XElement output)
+        public static void GMText(MathNode node, XElement output)
         {
             DrawSVGText(node, output);
         }
-		public static void GMs(MathNode node, XElement output)
+        public static void GMs(MathNode node, XElement output)
         {
             DrawSVGText(node, output);
         }
-		public static void GMSpace(MathNode node, XElement output)
+        public static void GMSpace(MathNode node, XElement output)
         {
             DrawSVGText(node, output);
         }
-		public static void GMSub(MathNode node, XElement output)
+        public static void GMSub(MathNode node, XElement output)
         {
             if (node.Children.Count < 2)
             {
@@ -212,7 +212,7 @@ namespace SvgMath
                 DrawScripts(node, output);
             }
         }
-		public static void GMSup(MathNode node, XElement output)
+        public static void GMSup(MathNode node, XElement output)
         {
             if (node.Children.Count < 2)
             {
@@ -223,7 +223,7 @@ namespace SvgMath
                 DrawScripts(node, output);
             }
         }
-		public static void GMSubSup(MathNode node, XElement output)
+        public static void GMSubSup(MathNode node, XElement output)
         {
             if (node.Children.Count < 2)
             {
@@ -234,7 +234,7 @@ namespace SvgMath
                 DrawScripts(node, output);
             }
         }
-		public static void GMMultiScripts(MathNode node, XElement output)
+        public static void GMMultiScripts(MathNode node, XElement output)
         {
             if (node.Children.Count < 2)
             {
@@ -245,7 +245,7 @@ namespace SvgMath
                 DrawScripts(node, output);
             }
         }
-		public static void GMUnder(MathNode node, XElement output)
+        public static void GMUnder(MathNode node, XElement output)
         {
             if (node.Children.Count < 2)
             {
@@ -256,7 +256,7 @@ namespace SvgMath
                 DrawLimits(node, output);
             }
         }
-		public static void GMOver(MathNode node, XElement output)
+        public static void GMOver(MathNode node, XElement output)
         {
             if (node.Children.Count < 2)
             {
@@ -267,7 +267,7 @@ namespace SvgMath
                 DrawLimits(node, output);
             }
         }
-		public static void GMUnderOver(MathNode node, XElement output)
+        public static void GMUnderOver(MathNode node, XElement output)
         {
             if (node.Children.Count < 2)
             {
@@ -278,11 +278,11 @@ namespace SvgMath
                 DrawLimits(node, output);
             }
         }
-		public static void GMTd(MathNode node, XElement output)
+        public static void GMTd(MathNode node, XElement output)
         {
             GMRow(node, output);
         }
-		public static void GMSqrt(MathNode node, XElement output)
+        public static void GMSqrt(MathNode node, XElement output)
         {
             DrawBox(node, output);
             DrawTranslatedNode(node.Base, output, node.Width - node.Base.Width - node.Gap, 0);
@@ -326,7 +326,7 @@ namespace SvgMath
             };
             output.Add(creatElement("path", attrs));
         }
-		public static void GMRoot(MathNode node, XElement output)
+        public static void GMRoot(MathNode node, XElement output)
         {
             GMSqrt(node, output);
             if (node.RootIndex != null)
@@ -336,12 +336,12 @@ namespace SvgMath
                 DrawTranslatedNode(node.RootIndex, output, w, h);
             }
         }
-		public static void GMTable(MathNode node, XElement output)
+        public static void GMTable(MathNode node, XElement output)
         {
             DrawBox(node, output);
             //Draw cells
             double vshift = -node.Height + node.FrameSpacings[1];
-			double hshift;
+            double hshift;
             foreach (var rowItem in node.Rows.Select((value, r) => new { r, value }))
             {
                 RowDescriptor row = rowItem.value;
@@ -437,145 +437,145 @@ namespace SvgMath
             }
             voffsets[voffsets.Count - 1] = y2;
 
-			List<double> vspans = Enumerable.Repeat<double>(0, node.Columns.Count).ToList();
-			for (int r = 0; r < node.Rows.Count - 1;r++ )
-			{
-				RowDescriptor row = node.Rows[r];
-				if (row.LineAfter == null)
-					continue;
+            List<double> vspans = Enumerable.Repeat<double>(0, node.Columns.Count).ToList();
+            for (int r = 0; r < node.Rows.Count - 1;r++ )
+            {
+                RowDescriptor row = node.Rows[r];
+                if (row.LineAfter == null)
+                    continue;
 
-				foreach (var cellItem in row.Cells.Select((value, c)=> new {c, value}))
-				{
-					CellDescriptor cell = cellItem.value;
-					if (cell == null || cell.ColSpan == null)
-						continue;
-					for (int i = cellItem.c; i < cellItem.c + cell.ColSpan; i++)
-						vspans[i] = cell.RowSpan;
-				}
-				vspans = vspans.Select(x=> Math.Max(0, x-1)).ToList();
+                foreach (var cellItem in row.Cells.Select((value, c)=> new {c, value}))
+                {
+                    CellDescriptor cell = cellItem.value;
+                    if (cell == null || cell.ColSpan == null)
+                        continue;
+                    for (int i = cellItem.c; i < cellItem.c + cell.ColSpan; i++)
+                        vspans[i] = cell.RowSpan;
+                }
+                vspans = vspans.Select(x=> Math.Max(0, x-1)).ToList();
 
-				double lineY = voffsets[r];
-				double startX = x1;
-				double endX = x1;
-				foreach (var cellItem in node.Columns.Select((value, c)=> new {c, value}))
-				{
-					if (vspans[cellItem.c] > 0)
-					{
-						DrawBorder(node, output, startX, lineY, endX, lineY, row.LineAfter);
-						startX = hoffsets[cellItem.c];
-					}
-					endX = hoffsets[cellItem.c];
-				}
-				DrawBorder(node, output, startX, lineY, endX, lineY, row.LineAfter);
-			}
+                double lineY = voffsets[r];
+                double startX = x1;
+                double endX = x1;
+                foreach (var cellItem in node.Columns.Select((value, c)=> new {c, value}))
+                {
+                    if (vspans[cellItem.c] > 0)
+                    {
+                        DrawBorder(node, output, startX, lineY, endX, lineY, row.LineAfter);
+                        startX = hoffsets[cellItem.c];
+                    }
+                    endX = hoffsets[cellItem.c];
+                }
+                DrawBorder(node, output, startX, lineY, endX, lineY, row.LineAfter);
+            }
 
-			List<double> hspans = Enumerable.Repeat<double>(0, node.Columns.Count).ToList();
-			for (int c = 0; c < node.Columns.Count - 1;c++ )
-			{
-				ColumnDescriptor column = node.Columns[c];
-				if (column.LineAfter == null)
-					continue;
+            List<double> hspans = Enumerable.Repeat<double>(0, node.Columns.Count).ToList();
+            for (int c = 0; c < node.Columns.Count - 1;c++ )
+            {
+                ColumnDescriptor column = node.Columns[c];
+                if (column.LineAfter == null)
+                    continue;
 
-				foreach (var rowItem in node.Rows.Select((value, r)=>new {r, value}))
-				{
-					RowDescriptor row = rowItem.value;
-					if (row.Cells.Count <= c)
-						continue;
-					CellDescriptor cell = row.Cells[c];
-					if (cell == null || cell.Content == null)
-						continue;
-					for (int j= rowItem.r; j < rowItem.r+cell.RowSpan; j++)
-					{
-						hspans[j] = cell.ColSpan;
-					}
-				}
-				hspans = hspans.Select(x => Math.Max(0, x - 1)).ToList();
-				double lineX = hoffsets[c];
-				double startY = y1;
-				double endY = y1;
-				foreach (var item in node.Rows.Select((value, r)=> new {r,value}))
-				{
-					if (hspans[item.r] > 0)
-					{
-						DrawBorder(node, output, lineX, startY, lineX, endY, column.LineAfter);
-						startY = voffsets[item.r];
-					}
-					endY = voffsets[item.r];
-				}
-				DrawBorder(node, output, lineX, startY, lineX, endY, column.LineAfter);
-			}
+                foreach (var rowItem in node.Rows.Select((value, r)=>new {r, value}))
+                {
+                    RowDescriptor row = rowItem.value;
+                    if (row.Cells.Count <= c)
+                        continue;
+                    CellDescriptor cell = row.Cells[c];
+                    if (cell == null || cell.Content == null)
+                        continue;
+                    for (int j= rowItem.r; j < rowItem.r+cell.RowSpan; j++)
+                    {
+                        hspans[j] = cell.ColSpan;
+                    }
+                }
+                hspans = hspans.Select(x => Math.Max(0, x - 1)).ToList();
+                double lineX = hoffsets[c];
+                double startY = y1;
+                double endY = y1;
+                foreach (var item in node.Rows.Select((value, r)=> new {r,value}))
+                {
+                    if (hspans[item.r] > 0)
+                    {
+                        DrawBorder(node, output, lineX, startY, lineX, endY, column.LineAfter);
+                        startY = voffsets[item.r];
+                    }
+                    endY = voffsets[item.r];
+                }
+                DrawBorder(node, output, lineX, startY, lineX, endY, column.LineAfter);
+            }
         }
-		public static void DrawBox(MathNode node, XElement output, double? borderWidth = null, string borderColor = null, double borderRadius = 0)
-		{
-			string background = GetBackGround(node);
-			if (background == "none" && (borderWidth == null || borderWidth == 0))
-				return;
-			if (borderColor == null)
-				borderColor = node.Color;
+        public static void DrawBox(MathNode node, XElement output, double? borderWidth = null, string borderColor = null, double borderRadius = 0)
+        {
+            string background = GetBackGround(node);
+            if (background == "none" && (borderWidth == null || borderWidth == 0))
+                return;
+            if (borderColor == null)
+                borderColor = node.Color;
 
-			Dictionary<string, string> attrs = new Dictionary<string, string>();
-			attrs.Add("fill", background);
-			attrs.Add("stroke", "none");
-			attrs.Add("x", ((double)borderWidth / 2).ToString());
-			attrs.Add("y", ((double)borderWidth / 2 - node.Height).ToString());
-			attrs.Add("width", (node.Width - (double)borderWidth).ToString());
-			attrs.Add("height", (node.Height + node.Depth - (double)borderWidth).ToString());
+            Dictionary<string, string> attrs = new Dictionary<string, string>();
+            attrs.Add("fill", background);
+            attrs.Add("stroke", "none");
+            attrs.Add("x", ((double)borderWidth / 2).ToString());
+            attrs.Add("y", ((double)borderWidth / 2 - node.Height).ToString());
+            attrs.Add("width", (node.Width - (double)borderWidth).ToString());
+            attrs.Add("height", (node.Height + node.Depth - (double)borderWidth).ToString());
 
-			if (borderWidth != null && borderColor != null)
-			{
-				attrs["stroke"] = borderColor;
-				attrs["stroke-width"] = borderWidth.ToString();
-				if (borderRadius != 0)
-				{
-					attrs.Add("rx", borderRadius.ToString());
-					attrs.Add("ry", borderRadius.ToString());
-				}
-			}
-			XElement rect = creatElement("rect", attrs);
-			output.Add(rect);
-		}
-		public static void DrawTranslatedNode(MathNode node, XElement output, double dx, double dy)
-		{
-			if (dx != 0 || dy != 0)
-			{
-				XElement svge = creatElement("g", new Dictionary<string, string>() { { "transform", string.Format("translate({0}, {1})", dx, dy) } });
-				node.Draw(svge);
-				output.Add(svge);
-			}
-			else
-			{
-				node.Draw(output);
-			}
+            if (borderWidth != null && borderColor != null)
+            {
+                attrs["stroke"] = borderColor;
+                attrs["stroke-width"] = borderWidth.ToString();
+                if (borderRadius != 0)
+                {
+                    attrs.Add("rx", borderRadius.ToString());
+                    attrs.Add("ry", borderRadius.ToString());
+                }
+            }
+            XElement rect = creatElement("rect", attrs);
+            output.Add(rect);
+        }
+        public static void DrawTranslatedNode(MathNode node, XElement output, double dx, double dy)
+        {
+            if (dx != 0 || dy != 0)
+            {
+                XElement svge = creatElement("g", new Dictionary<string, string>() { { "transform", string.Format("translate({0}, {1})", dx, dy) } });
+                node.Draw(svge);
+                output.Add(svge);
+            }
+            else
+            {
+                node.Draw(output);
+            }
 
-			//ToDo:Check implementation
-		}
-		public static void DrawStrikesEnclosure(MathNode node, XElement output)
-		{
-			DrawBox(node, output);
-			node.Base.Draw(output);
+            //ToDo:Check implementation
+        }
+        public static void DrawStrikesEnclosure(MathNode node, XElement output)
+        {
+            DrawBox(node, output);
+            node.Base.Draw(output);
 
-			double mid_x = node.Width / 2;
-			double mid_y = (node.Depth - node.Height) / 2;
-			// horizontal
-			if (node.DecorationData[0])
-				DrawStrike(node, output, 0, mid_y, node.Width, mid_y);
-			// vert
-			if (node.DecorationData[1])
-				DrawStrike(node, output, mid_x, -node.Height, mid_x, node.Depth);
-			// updiag
-			if (node.DecorationData[2])
-				DrawStrike(node, output, 0, node.Depth, node.Width, -node.Height);
-			// downdiag
-			if (node.DecorationData[3])
-				DrawStrike(node, output, 0, -node.Height, node.Width, node.Depth);
-		}
-		public static void DrawStrike(MathNode node, XElement output, double x1, double y1, double x2, double y2)
-		{
-			DrawLine(output, node.Color, node.BorderWidth, x1, y1, x2, y2);
-		}
-		public static void DrawLine(XElement output, string color, double width, double x1, double y1, double x2, double y2, Dictionary<string, string> strokeAttrs = null)
-		{
-			Dictionary<string, string> attrs = new Dictionary<string, string>()
+            double mid_x = node.Width / 2;
+            double mid_y = (node.Depth - node.Height) / 2;
+            // horizontal
+            if (node.DecorationData[0])
+                DrawStrike(node, output, 0, mid_y, node.Width, mid_y);
+            // vert
+            if (node.DecorationData[1])
+                DrawStrike(node, output, mid_x, -node.Height, mid_x, node.Depth);
+            // updiag
+            if (node.DecorationData[2])
+                DrawStrike(node, output, 0, node.Depth, node.Width, -node.Height);
+            // downdiag
+            if (node.DecorationData[3])
+                DrawStrike(node, output, 0, -node.Height, node.Width, node.Depth);
+        }
+        public static void DrawStrike(MathNode node, XElement output, double x1, double y1, double x2, double y2)
+        {
+            DrawLine(output, node.Color, node.BorderWidth, x1, y1, x2, y2);
+        }
+        public static void DrawLine(XElement output, string color, double width, double x1, double y1, double x2, double y2, Dictionary<string, string> strokeAttrs = null)
+        {
+            Dictionary<string, string> attrs = new Dictionary<string, string>()
             {
                 {"fill", "none" },
                 {"stroke", color},
@@ -588,91 +588,91 @@ namespace SvgMath
                 {"y2", y2.ToString() }
             };
 
-			if (strokeAttrs != null)
-			{
-				foreach (string key in strokeAttrs.Keys)
-				{
-					if (attrs.ContainsKey(key))
-					{
-						attrs[key] = strokeAttrs[key];
-					}
-					else
-					{
-						attrs.Add(key, strokeAttrs[key]);
-					}
-				}
-			}
+            if (strokeAttrs != null)
+            {
+                foreach (string key in strokeAttrs.Keys)
+                {
+                    if (attrs.ContainsKey(key))
+                    {
+                        attrs[key] = strokeAttrs[key];
+                    }
+                    else
+                    {
+                        attrs.Add(key, strokeAttrs[key]);
+                    }
+                }
+            }
 
-			XElement nxe = creatElement("line", attrs);
-			output.Add(nxe);
-		}
-		public static void DrawBordersEnclosure(MathNode node, XElement output)
-		{
-			DrawBox(node, output);
-			double x1 = node.BorderWidth / 2;
-			double y1 = node.BorderWidth / 2 - node.Height;
-			double x2 = node.Width - node.BorderWidth / 2;
-			double y2 = node.Depth - node.BorderWidth / 2;
-			// Left
-			if (node.DecorationData[0])
-				DrawBorder(node, output, x1, y1, x1, y2);
-			// Right
-			if (node.DecorationData[1])
-				DrawBorder(node, output, x2, y1, x2, y2);
-			// top
-			if (node.DecorationData[2])
-				DrawBorder(node, output, x1, y1, x2, y1);
-			// bottom
-			if (node.DecorationData[3])
-				DrawBorder(node, output, x1, y2, x2, y2);
+            XElement nxe = creatElement("line", attrs);
+            output.Add(nxe);
+        }
+        public static void DrawBordersEnclosure(MathNode node, XElement output)
+        {
+            DrawBox(node, output);
+            double x1 = node.BorderWidth / 2;
+            double y1 = node.BorderWidth / 2 - node.Height;
+            double x2 = node.Width - node.BorderWidth / 2;
+            double y2 = node.Depth - node.BorderWidth / 2;
+            // Left
+            if (node.DecorationData[0])
+                DrawBorder(node, output, x1, y1, x1, y2);
+            // Right
+            if (node.DecorationData[1])
+                DrawBorder(node, output, x2, y1, x2, y2);
+            // top
+            if (node.DecorationData[2])
+                DrawBorder(node, output, x1, y1, x2, y1);
+            // bottom
+            if (node.DecorationData[3])
+                DrawBorder(node, output, x1, y2, x2, y2);
 
-			double offset;
-			//Left
-			if (node.DecorationData[0])
-			{
-				offset = node.Width - node.Base.Width;
-				//Right
-				if (node.DecorationData[1])
-					offset /= 2;
-			}
-			else
-			{
-				offset = 0;
-			}
-			DrawTranslatedNode(node.Base, output, offset, 0);
-		}
-		public static void DrawBorder(MathNode node, XElement output, double x1, double y1, double x2, double y2)
-		{
-			DrawLine(output, node.Color, node.BorderWidth, x1, y2, x2, y2);
-		}
-		public static void DrawBorder(MathNode node, XElement output, double x1, double y1, double x2, double y2, string lineStyle)
-		{
-			if (lineStyle == null)
-				return;
+            double offset;
+            //Left
+            if (node.DecorationData[0])
+            {
+                offset = node.Width - node.Base.Width;
+                //Right
+                if (node.DecorationData[1])
+                    offset /= 2;
+            }
+            else
+            {
+                offset = 0;
+            }
+            DrawTranslatedNode(node.Base, output, offset, 0);
+        }
+        public static void DrawBorder(MathNode node, XElement output, double x1, double y1, double x2, double y2)
+        {
+            DrawLine(output, node.Color, node.BorderWidth, x1, y2, x2, y2);
+        }
+        public static void DrawBorder(MathNode node, XElement output, double x1, double y1, double x2, double y2, string lineStyle)
+        {
+            if (lineStyle == null)
+                return;
 
-			if (x1 == x2 && y1 == y2)
-				return;
-			Dictionary<string, string> extraStyle = null;
-			if (lineStyle == "dashed")
-			{
-				double linelength = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
-				double dashoffset = 5 - ((linelength / node.LineWidth + 3) % 10) / 2;
-				extraStyle = new Dictionary<string, string>()
+            if (x1 == x2 && y1 == y2)
+                return;
+            Dictionary<string, string> extraStyle = null;
+            if (lineStyle == "dashed")
+            {
+                double linelength = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+                double dashoffset = 5 - ((linelength / node.LineWidth + 3) % 10) / 2;
+                extraStyle = new Dictionary<string, string>()
                 {
                     { "stroke-dasharray", string.Format("{0:F6},{1:F6}", node.LineWidth * 7, node.LineWidth * 3)},
                     { "stroke-dashoffset", string.Format("{0:F6}", node.LineWidth * dashoffset) }
                 };
-			}
-			DrawLine(output, node.Color, node.LineWidth, x1, y1, x2, y2, extraStyle);
-		}
-		public static void DrawCircleEnclosure(MathNode node, XElement output)
-		{
-			string background = GetBackGround(node);
-			double r = (node.Width - node.BorderWidth) / 2;
-			double cx = node.Width / 2;
-			double cy = (node.Depth - node.Height) / 2;
+            }
+            DrawLine(output, node.Color, node.LineWidth, x1, y1, x2, y2, extraStyle);
+        }
+        public static void DrawCircleEnclosure(MathNode node, XElement output)
+        {
+            string background = GetBackGround(node);
+            double r = (node.Width - node.BorderWidth) / 2;
+            double cx = node.Width / 2;
+            double cy = (node.Depth - node.Height) / 2;
 
-			Dictionary<string, string> attrs = new Dictionary<string, string>()
+            Dictionary<string, string> attrs = new Dictionary<string, string>()
             {
                 { "fill", background},
                 {"stroke", node.Color },
@@ -681,35 +681,35 @@ namespace SvgMath
                 { "cy", cy.ToString() },
                 { "r", r.ToString() }
             };
-			output.Add(creatElement("circle", attrs));
-			DrawTranslatedNode(node.Base, output, (node.Width - node.Base.Width) / 2, 0);
-		}
-		public static void DrawBoxEnclosure(MathNode node, XElement output, double roundRadius = 0)
-		{
-			DrawBox(node, output, node.BorderWidth, null, roundRadius);
-			DrawTranslatedNode(node.Base, output, (node.Width - node.Base.Width) / 2, 0);
-		}
-		public static double GetAlign(MathNode node, string attrName)
-		{
-			string attrValue = node.GetProperty(attrName, "center");
-			if (alignKeywords.ContainsKey(attrValue))
-			{
-				return alignKeywords[attrValue];
-			}
-			else
-			{
-				return 0.5;
-				//ToDO: node.error("Bad value %s for %s", attrValue, attrName)
-			}
-		}
-		public static void DrawSVGText(MathNode node, XElement output)
-		{
-			DrawBox(node, output);
-			List<string> fontFamilies = node.FontPool().Where(x => x.Used == true).Select(x => x.Family).ToList();
-			if (fontFamilies.Count == 0)
-				fontFamilies = node.FontFamilies;
+            output.Add(creatElement("circle", attrs));
+            DrawTranslatedNode(node.Base, output, (node.Width - node.Base.Width) / 2, 0);
+        }
+        public static void DrawBoxEnclosure(MathNode node, XElement output, double roundRadius = 0)
+        {
+            DrawBox(node, output, node.BorderWidth, null, roundRadius);
+            DrawTranslatedNode(node.Base, output, (node.Width - node.Base.Width) / 2, 0);
+        }
+        public static double GetAlign(MathNode node, string attrName)
+        {
+            string attrValue = node.GetProperty(attrName, "center");
+            if (alignKeywords.ContainsKey(attrValue))
+            {
+                return alignKeywords[attrValue];
+            }
+            else
+            {
+                return 0.5;
+                //ToDO: node.error("Bad value %s for %s", attrValue, attrName)
+            }
+        }
+        public static void DrawSVGText(MathNode node, XElement output)
+        {
+            DrawBox(node, output);
+            List<string> fontFamilies = node.FontPool().Where(x => x.Used == true).Select(x => x.Family).ToList();
+            if (fontFamilies.Count == 0)
+                fontFamilies = node.FontFamilies;
 
-			Dictionary<string, string> attrs = new Dictionary<string, string>()
+            Dictionary<string, string> attrs = new Dictionary<string, string>()
             {
                 { "fill", node.Color },
                 { "font-family", string.Join(", ",fontFamilies) },
@@ -719,133 +719,133 @@ namespace SvgMath
                 { "y", (-node.TextShift).ToString()}
             };
 
-			if (node.FontWeight != "normal")
-				attrs["font-weight"] = node.FontWeight;
-			if (node.FontStyle != "normal")
-				attrs["font-style"] = node.FontStyle;
-			if (node.TextStretch != 1)
-				attrs["transform"] = string.Format("scale({0}, 1)", node.TextStretch);
+            if (node.FontWeight != "normal")
+                attrs["font-weight"] = node.FontWeight;
+            if (node.FontStyle != "normal")
+                attrs["font-style"] = node.FontStyle;
+            if (node.TextStretch != 1)
+                attrs["transform"] = string.Format("scale({0}, 1)", node.TextStretch);
 
-			foreach (KeyValuePair<int, char> ch in MathDefaults.SpecialChars)
-			{
-				node.Text = node.Text.Replace((char)ch.Key, ch.Value); //ToDo: validate
-			}
+            foreach (KeyValuePair<int, char> ch in MathDefaults.SpecialChars)
+            {
+                node.Text = node.Text.Replace((char)ch.Key, ch.Value); //ToDo: validate
+            }
 
-			XElement nxe = creatElement("text", attrs);
-			XText chars = new XText(node.Text);
-			nxe.Add(chars);
-			output.Add(nxe);
-		}
-		public static void DrawScripts(MathNode node, XElement output)
-		{
-			//ToDo: figger wat to match python
-			//    if len(node.children) < 2:
-			//      draw_mrow(node); return
+            XElement nxe = creatElement("text", attrs);
+            XText chars = new XText(node.Text);
+            nxe.Add(chars);
+            output.Add(nxe);
+        }
+        public static void DrawScripts(MathNode node, XElement output)
+        {
+            //ToDo: figger wat to match python
+            //    if len(node.children) < 2:
+            //      draw_mrow(node); return
 
-			double subY = node.SubShift;
-			double superY = -node.SuperShift;
+            double subY = node.SubShift;
+            double superY = -node.SuperShift;
 
-			DrawBox(node, output);
-			double offset = 0;
-			foreach (var item in node.PreWidths.Select((value, i) => new { i, value }))
-			{
-				offset += node.PreWidths[item.i];
-				if (item.i < node.PreSubScripts.Count)
-				{
-					MathNode presubscript = node.PreSubScripts[item.i];
-					DrawTranslatedNode(presubscript, output, offset - presubscript.Width, subY - Adjustment(presubscript));
-				}
-				if (item.i < node.PreSuperScripts.Count)
-				{
-					MathNode presuperscript = node.PreSuperScripts[item.i];
-					DrawTranslatedNode(presuperscript, output, offset - presuperscript.Width, superY - Adjustment(presuperscript));
-				}
-			}
-			DrawTranslatedNode(node.Base, output, offset, 0);
-			offset += node.Base.Width;
+            DrawBox(node, output);
+            double offset = 0;
+            foreach (var item in node.PreWidths.Select((value, i) => new { i, value }))
+            {
+                offset += node.PreWidths[item.i];
+                if (item.i < node.PreSubScripts.Count)
+                {
+                    MathNode presubscript = node.PreSubScripts[item.i];
+                    DrawTranslatedNode(presubscript, output, offset - presubscript.Width, subY - Adjustment(presubscript));
+                }
+                if (item.i < node.PreSuperScripts.Count)
+                {
+                    MathNode presuperscript = node.PreSuperScripts[item.i];
+                    DrawTranslatedNode(presuperscript, output, offset - presuperscript.Width, superY - Adjustment(presuperscript));
+                }
+            }
+            DrawTranslatedNode(node.Base, output, offset, 0);
+            offset += node.Base.Width;
 
-			foreach (var item in node.PostWidths.Select((value, i) => new { i, value }))
-			{
-				if (item.i < node.SubScripts.Count)
-				{
-					MathNode subscript = node.SubScripts[item.i];
-					DrawTranslatedNode(subscript, output, offset, subY - Adjustment(subscript));
-				}
-				if (item.i < node.SuperScripts.Count)
-				{
-					MathNode superscript = node.SuperScripts[item.i];
-					DrawTranslatedNode(superscript, output, offset, superY - Adjustment(superscript));
-				}
-				offset += node.PostWidths[item.i];
-			}
-		}
-		public static void DrawLimits(MathNode node, XElement output)
-		{
-			if (node.Core.MoveLimits)
-			{
-				DrawScripts(node, output);
-				return;
-			}
+            foreach (var item in node.PostWidths.Select((value, i) => new { i, value }))
+            {
+                if (item.i < node.SubScripts.Count)
+                {
+                    MathNode subscript = node.SubScripts[item.i];
+                    DrawTranslatedNode(subscript, output, offset, subY - Adjustment(subscript));
+                }
+                if (item.i < node.SuperScripts.Count)
+                {
+                    MathNode superscript = node.SuperScripts[item.i];
+                    DrawTranslatedNode(superscript, output, offset, superY - Adjustment(superscript));
+                }
+                offset += node.PostWidths[item.i];
+            }
+        }
+        public static void DrawLimits(MathNode node, XElement output)
+        {
+            if (node.Core.MoveLimits)
+            {
+                DrawScripts(node, output);
+                return;
+            }
 
-			DrawBox(node, output);
-			DrawTranslatedNode(node.Base, output, (node.Width - node.Base.Width) / 2, 0);
-			if (node.UnderScript != null)
-				DrawTranslatedNode(node.UnderScript, output, (node.Width - node.UnderScript.Width) / 2, node.Depth - node.UnderScript.Depth);
-			if (node.OverScript != null)
-				DrawTranslatedNode(node.OverScript, output, (node.Width - node.OverScript.Width) / 2, node.OverScript.Height - node.Height);
-		}
-		public static double Adjustment(MathNode script)
-		{
-			if (script.AlignToAxis)
-				return script.Axis();
-			else
-				return 0;
-		}
-		public static string GetBackGround(MathNode node)
-		{
-			foreach (string attr in m_backgroundAttributes)
-			{
-				if (node.Attributes != null && node.Attributes.ContainsKey(attr))
-				{
-					if (node.Attributes[attr] == "transparent")
-						return "none";
-					else
-						return node.Attributes[attr];
-				}
-			}
-			return "none";
-		}
-		public static XElement creatElement(string localName, Dictionary<string, string> attrs, bool mathNamespace = false)
-		{
-			XElement newElement;
-			if (mathNamespace)
-			{
-				newElement = new XElement(SvgMathNs + localName);
-			}
-			else
-			{
-				newElement = new XElement(SvgNs + localName);
-			}
-			if (attrs != null)
-			{
-				foreach (KeyValuePair<string, string> vp in attrs)
-				{
-					newElement.SetAttributeValue(vp.Key, vp.Value);
-				}
-			}
-			return newElement;
-		}
+            DrawBox(node, output);
+            DrawTranslatedNode(node.Base, output, (node.Width - node.Base.Width) / 2, 0);
+            if (node.UnderScript != null)
+                DrawTranslatedNode(node.UnderScript, output, (node.Width - node.UnderScript.Width) / 2, node.Depth - node.UnderScript.Depth);
+            if (node.OverScript != null)
+                DrawTranslatedNode(node.OverScript, output, (node.Width - node.OverScript.Width) / 2, node.OverScript.Height - node.Height);
+        }
+        public static double Adjustment(MathNode script)
+        {
+            if (script.AlignToAxis)
+                return script.Axis();
+            else
+                return 0;
+        }
+        public static string GetBackGround(MathNode node)
+        {
+            foreach (string attr in m_backgroundAttributes)
+            {
+                if (node.Attributes != null && node.Attributes.ContainsKey(attr))
+                {
+                    if (node.Attributes[attr] == "transparent")
+                        return "none";
+                    else
+                        return node.Attributes[attr];
+                }
+            }
+            return "none";
+        }
+        public static XElement creatElement(string localName, Dictionary<string, string> attrs, bool mathNamespace = false)
+        {
+            XElement newElement;
+            if (mathNamespace)
+            {
+                newElement = new XElement(SvgMathNs + localName);
+            }
+            else
+            {
+                newElement = new XElement(SvgNs + localName);
+            }
+            if (attrs != null)
+            {
+                foreach (KeyValuePair<string, string> vp in attrs)
+                {
+                    newElement.SetAttributeValue(vp.Key, vp.Value);
+                }
+            }
+            return newElement;
+        }
 
 
-		// SVG namespace
-		public static XNamespace SvgNs = "http://www.w3.org/2000/svg";
-		public static XAttribute SvgNsAttr = new XAttribute(XNamespace.Xmlns + "svg", SvgNs.NamespaceName);
-		// SVGMath proprietary namespace - used in metadata
-		public static XNamespace SvgMathNs = "http://www.grigoriev.ru/svgmath";
-		public static XAttribute SvgNsMathAttr = new XAttribute(XNamespace.Xmlns + "svgmath", SvgMathNs.NamespaceName);
-		// Handy mapping of horizontal alignment keywords
-		public static Dictionary<string, double> alignKeywords = new Dictionary<string, double>() { { "left", 0 }, { "center", 0.5 }, { "right", 1 } };
-		static List<string> m_backgroundAttributes = new List<string>() { "mathbackground", "background-color", "background" };
+        // SVG namespace
+        public static XNamespace SvgNs = "http://www.w3.org/2000/svg";
+        public static XAttribute SvgNsAttr = new XAttribute(XNamespace.Xmlns + "svg", SvgNs.NamespaceName);
+        // SVGMath proprietary namespace - used in metadata
+        public static XNamespace SvgMathNs = "http://www.grigoriev.ru/svgmath";
+        public static XAttribute SvgNsMathAttr = new XAttribute(XNamespace.Xmlns + "svgmath", SvgMathNs.NamespaceName);
+        // Handy mapping of horizontal alignment keywords
+        public static Dictionary<string, double> alignKeywords = new Dictionary<string, double>() { { "left", 0 }, { "center", 0.5 }, { "right", 1 } };
+        static List<string> m_backgroundAttributes = new List<string>() { "mathbackground", "background-color", "background" };
 
     }
 }
