@@ -20,93 +20,93 @@ namespace SvgMath
                     break;
                 case ("none"):
                     break;
-				case "math":
-					MMath();
-					break;
+                case "math":
+                    MMath();
+                    break;
                 case "mphantom":
                     MPhantom();
                     break;
-				case "mstyle":
-					MStyle();
-					break;
-				case "maction":
-					MAction();
-					break;
-				case "mpadded":
-					MPAdded();
-					break;
-				case "mfenced":
-					MFenced();
-					break;
-				case "mo":
-					Mo();
-					break;
-				case "mn":
-					Mn();
-					break;
-				case "mi":
-					Mi();
-					break;
-				case "mtext":
-					MText();
-					break;
-				case "merror":
-					MError();
-					break;
-				case "ms":
-					Ms();
-					break;
-				case "mspace":
-					MSpace();
-					break;
-				case "mrow":
-					MRow();
-					break;
-				case "mfrac":
-					MFrac();
-					break;
-				case "msqrt":
-					MSqrt();
-					break;
-				case "mroot":
-					MRoot();
-					break;
-				case "msub":
-					MSub();
-					break;
-				case "msup":
-					MSup();
-					break;
-				case "msubsup":
-					MSubSup();
-					break;
-				case "munder":
-					MUnder();
-					break;
-				case "mover":
-					MOver();
-					break;
-				case "munderover":
-					MUnderOver();
-					break;
-				case "mmultiscripts":
-					MMultiScripts();
-					break;
-				case "menclose":
-					MEnclose();
-					break;
-				case "mtable":
-					MTable();
-					break;
-				case "mtr":
-					MTr();
-					break;
-				case "mlabeledtr":
-					MLabeledTr();
-					break;
-				case "mtd":
-					MTd();
-					break;
+                case "mstyle":
+                    MStyle();
+                    break;
+                case "maction":
+                    MAction();
+                    break;
+                case "mpadded":
+                    MPAdded();
+                    break;
+                case "mfenced":
+                    MFenced();
+                    break;
+                case "mo":
+                    Mo();
+                    break;
+                case "mn":
+                    Mn();
+                    break;
+                case "mi":
+                    Mi();
+                    break;
+                case "mtext":
+                    MText();
+                    break;
+                case "merror":
+                    MError();
+                    break;
+                case "ms":
+                    Ms();
+                    break;
+                case "mspace":
+                    MSpace();
+                    break;
+                case "mrow":
+                    MRow();
+                    break;
+                case "mfrac":
+                    MFrac();
+                    break;
+                case "msqrt":
+                    MSqrt();
+                    break;
+                case "mroot":
+                    MRoot();
+                    break;
+                case "msub":
+                    MSub();
+                    break;
+                case "msup":
+                    MSup();
+                    break;
+                case "msubsup":
+                    MSubSup();
+                    break;
+                case "munder":
+                    MUnder();
+                    break;
+                case "mover":
+                    MOver();
+                    break;
+                case "munderover":
+                    MUnderOver();
+                    break;
+                case "mmultiscripts":
+                    MMultiScripts();
+                    break;
+                case "menclose":
+                    MEnclose();
+                    break;
+                case "mtable":
+                    MTable();
+                    break;
+                case "mtr":
+                    MTr();
+                    break;
+                case "mlabeledtr":
+                    MLabeledTr();
+                    break;
+                case "mtd":
+                    MTd();
+                    break;
                 default:
                     throw new InvalidOperationException(string.Format("MathML element '{0}' is unsupported", m_node.ElementName));
             }
@@ -672,159 +672,159 @@ namespace SvgMath
         void MTable()
         {
             m_node.LineWidth = m_node.NominalLineWidth();
-			ArrangeCells(m_node);
-			ArrangeLines(m_node);
-			
-			//Calculate column widths 
-			CalculateColumnWidths(m_node);
+            ArrangeCells(m_node);
+            ArrangeLines(m_node);
+            
+            //Calculate column widths 
+            CalculateColumnWidths(m_node);
 
-			//Expand stretchy operators horizontally
-			foreach (RowDescriptor r in m_node.Rows)
-			{
-				foreach (var item in r.Cells.Select((value, i) => new { i, value }))
-				{
-					CellDescriptor c = item.value;
-					if (c == null || c.Content == null)
-						continue;
+            //Expand stretchy operators horizontally
+            foreach (RowDescriptor r in m_node.Rows)
+            {
+                foreach (var item in r.Cells.Select((value, i) => new { i, value }))
+                {
+                    CellDescriptor c = item.value;
+                    if (c == null || c.Content == null)
+                        continue;
 
-					MathNode content = c.Content;
-					if (content.ElementName == "mtd")
-					{
-						if (content.Children.Count != 1)
-							continue;
-						content = content.Children[0];
-						if (content.Core.Stretchy)
-							c.Content = content;
-					}
-					if (content.Core.Stretchy)
-					{
-						if (c.ColSpan == 1)
-						{
-							Stretch(content, m_node.Columns[item.i].Width, null, null);
-						}
-						else
-						{
-							List<ColumnDescriptor> spannedColumns = m_node.Columns.Skip(item.i).Take(item.i + c.ColSpan).ToList();
-							double cellSize = spannedColumns.Select(x => x.Width).Sum();
-							cellSize += spannedColumns.TakeWhile((x, i) => i < spannedColumns.Count).Select(x => x.SpaceAfter).Sum();
-							Stretch(content, cellSize, null, null);
-						}
-					}
-				}
-			}
+                    MathNode content = c.Content;
+                    if (content.ElementName == "mtd")
+                    {
+                        if (content.Children.Count != 1)
+                            continue;
+                        content = content.Children[0];
+                        if (content.Core.Stretchy)
+                            c.Content = content;
+                    }
+                    if (content.Core.Stretchy)
+                    {
+                        if (c.ColSpan == 1)
+                        {
+                            Stretch(content, m_node.Columns[item.i].Width, null, null);
+                        }
+                        else
+                        {
+                            List<ColumnDescriptor> spannedColumns = m_node.Columns.Skip(item.i).Take(item.i + c.ColSpan).ToList();
+                            double cellSize = spannedColumns.Select(x => x.Width).Sum();
+                            cellSize += spannedColumns.TakeWhile((x, i) => i < spannedColumns.Count).Select(x => x.SpaceAfter).Sum();
+                            Stretch(content, cellSize, null, null);
+                        }
+                    }
+                }
+            }
 
-			// Calculate row heights
-			CalculateRowHeights(m_node);
-			
-			// Expand stretchy operators vertically in all cells
-			foreach (var item in m_node.Rows.Select((value, i) => new {i, value}))
-			{
-				RowDescriptor r = item.value;
-				foreach (CellDescriptor c in r.Cells)
-				{
-					if (c == null || c.Content == null)
-						continue;
-					MathNode content = c.Content;
-					if (content.ElementName == "mtd")
-					{
-						if (content.Children.Count != 1)
-							continue;
-						content = content.Children[0];
-						if (content.Core.Stretchy)
-							c.Content = content;
-					}
-					if (content.Core.Stretchy)
-					{
-						if (c.RowSpan == 1)
-						{
-							Stretch(content, null, r.Height - c.VShift, r.Depth + c.VShift);
-						}
-						else
-						{
-							List<RowDescriptor> spannedRows = m_node.Rows.Skip(item.i).Take(item.i + c.RowSpan).ToList();
-							double cellSize = spannedRows.Select(x => x.Height + x.Depth).Sum();
-							cellSize += spannedRows.TakeWhile((x, i) => i < spannedRows.Count).Select(x=> x.SpaceAfter).Sum();
-							Stretch(content, null, cellSize / 2, cellSize / 2);
-						}
-					}
-				}
-			}
-			
-			//Recalculate widths, to account for stretched cells
-			CalculateColumnWidths(m_node);
+            // Calculate row heights
+            CalculateRowHeights(m_node);
+            
+            // Expand stretchy operators vertically in all cells
+            foreach (var item in m_node.Rows.Select((value, i) => new {i, value}))
+            {
+                RowDescriptor r = item.value;
+                foreach (CellDescriptor c in r.Cells)
+                {
+                    if (c == null || c.Content == null)
+                        continue;
+                    MathNode content = c.Content;
+                    if (content.ElementName == "mtd")
+                    {
+                        if (content.Children.Count != 1)
+                            continue;
+                        content = content.Children[0];
+                        if (content.Core.Stretchy)
+                            c.Content = content;
+                    }
+                    if (content.Core.Stretchy)
+                    {
+                        if (c.RowSpan == 1)
+                        {
+                            Stretch(content, null, r.Height - c.VShift, r.Depth + c.VShift);
+                        }
+                        else
+                        {
+                            List<RowDescriptor> spannedRows = m_node.Rows.Skip(item.i).Take(item.i + c.RowSpan).ToList();
+                            double cellSize = spannedRows.Select(x => x.Height + x.Depth).Sum();
+                            cellSize += spannedRows.TakeWhile((x, i) => i < spannedRows.Count).Select(x=> x.SpaceAfter).Sum();
+                            Stretch(content, null, cellSize / 2, cellSize / 2);
+                        }
+                    }
+                }
+            }
+            
+            //Recalculate widths, to account for stretched cells
+            CalculateColumnWidths(m_node);
 
-			//Calculate total width of the table
-			m_node.Width = m_node.Columns.Select(x => x.Width + x.SpaceAfter).Sum();
-			m_node.Width += 2 * m_node.FrameSpacings[0];
+            //Calculate total width of the table
+            m_node.Width = m_node.Columns.Select(x => x.Width + x.SpaceAfter).Sum();
+            m_node.Width += 2 * m_node.FrameSpacings[0];
 
-			// Calculate total height of the table
-			double vsize = m_node.Rows.Select(x=> x.Height+x.Depth+x.SpaceAfter).Sum();
-			vsize += 2 * m_node.FrameSpacings[1];
+            // Calculate total height of the table
+            double vsize = m_node.Rows.Select(x=> x.Height+x.Depth+x.SpaceAfter).Sum();
+            vsize += 2 * m_node.FrameSpacings[1];
 
-			// Calculate alignment point
-			object[] aligndata = GetAlign(m_node);
-			string alignType = (string)aligndata[0];
-			int? alignRow = (int?)aligndata[1];
+            // Calculate alignment point
+            object[] aligndata = GetAlign(m_node);
+            string alignType = (string)aligndata[0];
+            int? alignRow = (int?)aligndata[1];
 
 
-			double topLine = 0;
-			double bottomLine = vsize;
-			double axisLine = vsize / 2;
-			double baseLine = axisLine + m_node.Axis();
-			
-			if (alignRow != null)
-			{
-				RowDescriptor row = m_node.Rows[(int)alignRow - 1];
-				topLine = m_node.FrameSpacings[1];
-				m_node.Rows.TakeWhile((x, i) => i < (int)alignRow).ToList().ForEach(x => topLine += x.Height + x.Depth + x.SpaceAfter); //ToDo: verify
-				bottomLine = topLine + row.Height + row.Depth;
-				if (row.AlignToAxis)
-				{
-					axisLine = topLine + row.Height;
-					baseLine = axisLine + m_node.Axis();
-				}
-				else
-				{
-					baseLine = topLine + row.Height;
-					axisLine = baseLine - m_node.Axis();
-				}
-			}
+            double topLine = 0;
+            double bottomLine = vsize;
+            double axisLine = vsize / 2;
+            double baseLine = axisLine + m_node.Axis();
+            
+            if (alignRow != null)
+            {
+                RowDescriptor row = m_node.Rows[(int)alignRow - 1];
+                topLine = m_node.FrameSpacings[1];
+                m_node.Rows.TakeWhile((x, i) => i < (int)alignRow).ToList().ForEach(x => topLine += x.Height + x.Depth + x.SpaceAfter); //ToDo: verify
+                bottomLine = topLine + row.Height + row.Depth;
+                if (row.AlignToAxis)
+                {
+                    axisLine = topLine + row.Height;
+                    baseLine = axisLine + m_node.Axis();
+                }
+                else
+                {
+                    baseLine = topLine + row.Height;
+                    axisLine = baseLine - m_node.Axis();
+                }
+            }
 
-			if (alignType == "axis")
-			{
-				m_node.AlignToAxis = true;
-				m_node.Height = axisLine;
-			}
-			else if (alignType == "baseline")
-			{
-				m_node.AlignToAxis = false;
-				m_node.Height = baseLine;
-			}
-			else if (alignType == "center")
-			{
-				m_node.AlignToAxis = false;
-				m_node.Height = (topLine + bottomLine) / 2;
-			}
-			else if (alignType == "top")
-			{
-				m_node.AlignToAxis = false;
-				m_node.Height = topLine;
-			}
-			else if (alignType == "bottom")
-			{
-				m_node.AlignToAxis = false;
-				m_node.Height = bottomLine;
-			}
-			else
-			{
-				// ToDo: node.error("Unrecognized or unsupported table alignment value: " + alignType)
-				m_node.AlignToAxis = true;
-				m_node.Height = axisLine;
-			}
+            if (alignType == "axis")
+            {
+                m_node.AlignToAxis = true;
+                m_node.Height = axisLine;
+            }
+            else if (alignType == "baseline")
+            {
+                m_node.AlignToAxis = false;
+                m_node.Height = baseLine;
+            }
+            else if (alignType == "center")
+            {
+                m_node.AlignToAxis = false;
+                m_node.Height = (topLine + bottomLine) / 2;
+            }
+            else if (alignType == "top")
+            {
+                m_node.AlignToAxis = false;
+                m_node.Height = topLine;
+            }
+            else if (alignType == "bottom")
+            {
+                m_node.AlignToAxis = false;
+                m_node.Height = bottomLine;
+            }
+            else
+            {
+                // ToDo: node.error("Unrecognized or unsupported table alignment value: " + alignType)
+                m_node.AlignToAxis = true;
+                m_node.Height = axisLine;
+            }
 
-			m_node.Depth = vsize - m_node.Height;
-			m_node.Ascender = m_node.Height;
-			m_node.Descender = m_node.Depth;
+            m_node.Depth = vsize - m_node.Height;
+            m_node.Ascender = m_node.Height;
+            m_node.Descender = m_node.Depth;
         }
         void MTr()
         {
@@ -1368,420 +1368,420 @@ namespace SvgMath
             node.Ascender = node.Base.Ascender;
             node.Descender = node.Base.Descender;
         }
-		public static double GetByIndexOrLast(List<double> lst, int idx)
-		{
-			if (idx < lst.Count)
-				return lst[idx];
-			else
-				return lst.Last();
-		}
-		public static string GetByIndexOrLast(List<string> lst, int idx)
-		{
-			if (idx < lst.Count)
-				return lst[idx];
-			else
-				return lst.Last();
-		}
-		void ArrangeCells(MathNode node)
-		{
-			node.Rows = new List<RowDescriptor>();
-			node.Columns = new List<ColumnDescriptor>();
-			List<int> busycells = new List<int>();
+        public static double GetByIndexOrLast(List<double> lst, int idx)
+        {
+            if (idx < lst.Count)
+                return lst[idx];
+            else
+                return lst.Last();
+        }
+        public static string GetByIndexOrLast(List<string> lst, int idx)
+        {
+            if (idx < lst.Count)
+                return lst[idx];
+            else
+                return lst.Last();
+        }
+        void ArrangeCells(MathNode node)
+        {
+            node.Rows = new List<RowDescriptor>();
+            node.Columns = new List<ColumnDescriptor>();
+            List<int> busycells = new List<int>();
 
-			// Read table-level alignment properties
-			List<string> table_rowaligns = node.GetListProperty("rowalign");
-			List<string> table_columnaligns = node.GetListProperty("columnalign");
+            // Read table-level alignment properties
+            List<string> table_rowaligns = node.GetListProperty("rowalign");
+            List<string> table_columnaligns = node.GetListProperty("columnalign");
 
-			foreach (MathNode ch in node.Children)
-			{
-				string rowalign = GetByIndexOrLast(table_rowaligns, node.Rows.Count);
-				List<string> row_columnaligns = table_columnaligns;
-				List<MathNode> cells = new List<MathNode>();
+            foreach (MathNode ch in node.Children)
+            {
+                string rowalign = GetByIndexOrLast(table_rowaligns, node.Rows.Count);
+                List<string> row_columnaligns = table_columnaligns;
+                List<MathNode> cells = new List<MathNode>();
 
-				if (ch.ElementName == "mtr" || ch.ElementName == "mlabeledtr")
-				{
-					cells = ch.Children;
-					if (ch.Attributes.ContainsKey("rowalign"))
-						rowalign = ch.Attributes["rowalign"];
-					if (ch.Attributes.ContainsKey("columnalign"))
-					{
-						List<string> columnaligns = node.GetListProperty("columnalign", ch.Attributes["columnalign"]);
-					}
-						
-				}
-				else
-				{
-					cells.Add(ch);
-				}
+                if (ch.ElementName == "mtr" || ch.ElementName == "mlabeledtr")
+                {
+                    cells = ch.Children;
+                    if (ch.Attributes.ContainsKey("rowalign"))
+                        rowalign = ch.Attributes["rowalign"];
+                    if (ch.Attributes.ContainsKey("columnalign"))
+                    {
+                        List<string> columnaligns = node.GetListProperty("columnalign", ch.Attributes["columnalign"]);
+                    }
+                        
+                }
+                else
+                {
+                    cells.Add(ch);
+                }
 
-				RowDescriptor row = new RowDescriptor(node, cells, rowalign, row_columnaligns, busycells);
-				node.Rows.Add(row);
-				// busycells passes information about cells spanning multiple rows
-				busycells = busycells.Select(n => Math.Max(0, n - 1)).ToList();
-				while (busycells.Count < row.Cells.Count)
-					busycells.Add(0);
+                RowDescriptor row = new RowDescriptor(node, cells, rowalign, row_columnaligns, busycells);
+                node.Rows.Add(row);
+                // busycells passes information about cells spanning multiple rows
+                busycells = busycells.Select(n => Math.Max(0, n - 1)).ToList();
+                while (busycells.Count < row.Cells.Count)
+                    busycells.Add(0);
 
-				for(int i =0; i < row.Cells.Count; i++)
-				{
-					CellDescriptor cell = row.Cells[i];
-					if (cell == null)
-						continue;
-					if (cell.RowSpan > 1)
-					{
-						for (int j = i; j <= i + cell.ColSpan; i++)
-						{
-							busycells[j] = cell.RowSpan - 1;
-						}
-					}
-				}
-			}
+                for(int i =0; i < row.Cells.Count; i++)
+                {
+                    CellDescriptor cell = row.Cells[i];
+                    if (cell == null)
+                        continue;
+                    if (cell.RowSpan > 1)
+                    {
+                        for (int j = i; j <= i + cell.ColSpan; i++)
+                        {
+                            busycells[j] = cell.RowSpan - 1;
+                        }
+                    }
+                }
+            }
 
-			//Pad the table with empty rows until no spanning cell protrudes
-			while (busycells.Max() > 0)
-			{
-				string rowalign = Measurer.GetByIndexOrLast(table_rowaligns, node.Rows.Count);
-				node.Rows.Add(new RowDescriptor(node, new List<MathNode>(), rowalign, table_columnaligns, busycells));
-				busycells = busycells.Select(x => Math.Max(0, x - 1)).ToList();
-			}
+            //Pad the table with empty rows until no spanning cell protrudes
+            while (busycells.Max() > 0)
+            {
+                string rowalign = Measurer.GetByIndexOrLast(table_rowaligns, node.Rows.Count);
+                node.Rows.Add(new RowDescriptor(node, new List<MathNode>(), rowalign, table_columnaligns, busycells));
+                busycells = busycells.Select(x => Math.Max(0, x - 1)).ToList();
+            }
 
-		}
-		void ArrangeLines(MathNode node)
-		{
-			//Get spacings and line styles; expand to cover the table fully
-			List<double> spacings = node.GetListProperty("rowspacing").Select(x=> node.ParseLength(x)).ToList();
-			List<string> lines = node.GetListProperty("rowlines");
+        }
+        void ArrangeLines(MathNode node)
+        {
+            //Get spacings and line styles; expand to cover the table fully
+            List<double> spacings = node.GetListProperty("rowspacing").Select(x=> node.ParseLength(x)).ToList();
+            List<string> lines = node.GetListProperty("rowlines");
 
-			for (int i=0; i < node.Rows.Count -1; i++) //Todo: Verify
-			{
-				node.Rows[i].SpaceAfter = (double)Measurer.GetByIndexOrLast(spacings, i);
-				string line = GetByIndexOrLast(lines, i);
-				if (line != "none")
-				{
-					node.Rows[i].LineAfter = line;
-					node.Rows[i].SpaceAfter += node.LineWidth;
-				}
-			}
+            for (int i=0; i < node.Rows.Count -1; i++) //Todo: Verify
+            {
+                node.Rows[i].SpaceAfter = (double)Measurer.GetByIndexOrLast(spacings, i);
+                string line = GetByIndexOrLast(lines, i);
+                if (line != "none")
+                {
+                    node.Rows[i].LineAfter = line;
+                    node.Rows[i].SpaceAfter += node.LineWidth;
+                }
+            }
 
-			spacings = node.GetListProperty("columnspacing").Select(x => node.ParseLength(x)).ToList();
-			lines = node.GetListProperty("columnlines");
+            spacings = node.GetListProperty("columnspacing").Select(x => node.ParseLength(x)).ToList();
+            lines = node.GetListProperty("columnlines");
 
-			for (int i=0; i < node.Columns.Count -1; i++) //Todo: Verify
-			{
-				node.Columns[i].SpaceAfter = GetByIndexOrLast(spacings, i);
-				string line = GetByIndexOrLast(lines, i);
-				if (line != "none")
-				{
-					node.Columns[i].LineAfter = line;
-					node.Columns[i].SpaceAfter += node.LineWidth;
-				}
-			}
+            for (int i=0; i < node.Columns.Count -1; i++) //Todo: Verify
+            {
+                node.Columns[i].SpaceAfter = GetByIndexOrLast(spacings, i);
+                string line = GetByIndexOrLast(lines, i);
+                if (line != "none")
+                {
+                    node.Columns[i].LineAfter = line;
+                    node.Columns[i].SpaceAfter += node.LineWidth;
+                }
+            }
 
-			node.FrameSpacings = new List<double>(){0, 0};
-			node.FrameLines = new List<string>(){null, null};
+            node.FrameSpacings = new List<double>(){0, 0};
+            node.FrameLines = new List<string>(){null, null};
 
-			spacings = node.GetListProperty("framespacing").Select(x => node.ParseSpace(x)).ToList();
-			lines = node.GetListProperty("frame");
-			for (int i = 0; i < 2; i++) //Todo: Verify
-			{
-				string line = GetByIndexOrLast(lines, i);
-				if (line != "none")
-				{
-					node.FrameSpacings[i] = GetByIndexOrLast(spacings, i);
-					node.FrameLines[i] = line;
-				}
-			}
-		}
-		void CalculateColumnWidths(MathNode node)
-		{
-			// Get total width
-			string fullwidthattr = "auto";
-			if (node.Attributes.ContainsKey("width"))
-				fullwidthattr = node.Attributes["width"];
+            spacings = node.GetListProperty("framespacing").Select(x => node.ParseSpace(x)).ToList();
+            lines = node.GetListProperty("frame");
+            for (int i = 0; i < 2; i++) //Todo: Verify
+            {
+                string line = GetByIndexOrLast(lines, i);
+                if (line != "none")
+                {
+                    node.FrameSpacings[i] = GetByIndexOrLast(spacings, i);
+                    node.FrameLines[i] = line;
+                }
+            }
+        }
+        void CalculateColumnWidths(MathNode node)
+        {
+            // Get total width
+            string fullwidthattr = "auto";
+            if (node.Attributes.ContainsKey("width"))
+                fullwidthattr = node.Attributes["width"];
 
-			double? fullwidth;
-			if (fullwidthattr == "auto")
-			{
-				fullwidth = null;
-			}
-			else
-			{
-				fullwidth = node.ParseLength(fullwidthattr);
-				if (fullwidth <= 0)
-					fullwidth = null;
-			}
+            double? fullwidth;
+            if (fullwidthattr == "auto")
+            {
+                fullwidth = null;
+            }
+            else
+            {
+                fullwidth = node.ParseLength(fullwidthattr);
+                if (fullwidth <= 0)
+                    fullwidth = null;
+            }
 
-			// Fill fixed column widths
-			List<string> columnwidths = node.GetListProperty("columnwidth");
-			foreach (var item in node.Columns.Select((value,i) => new {i, value}))
-			{
-				ColumnDescriptor column = item.value;
-				string attr = GetByIndexOrLast(columnwidths, item.i);
-				if (attr == "auto" || attr == "fit")
-				{
-					column.Fit = (attr == "fit");
-				}
-				else if (attr.EndsWith("%"))
-				{
-					if (fullwidth == null)
-					{
-						//ToDo: node.error("Percents in column widths supported only in tables with explicit width; width of column %d treated as 'auto'" % (i+1))
-					}
-					else
-					{
-						double value = 0.0;
-						bool result = double.TryParse(attr.Substring(0, attr.Length - 1), out value);
-						if (result && value > 0)
-						{
-							column.Width = (double)fullwidth * value / 100;
-							column.Auto = false;
-						}
-					}
-				}
-				else
-				{
-					column.Width = node.ParseSpace(attr);
-					column.Auto = true;
-				}
-			}
+            // Fill fixed column widths
+            List<string> columnwidths = node.GetListProperty("columnwidth");
+            foreach (var item in node.Columns.Select((value,i) => new {i, value}))
+            {
+                ColumnDescriptor column = item.value;
+                string attr = GetByIndexOrLast(columnwidths, item.i);
+                if (attr == "auto" || attr == "fit")
+                {
+                    column.Fit = (attr == "fit");
+                }
+                else if (attr.EndsWith("%"))
+                {
+                    if (fullwidth == null)
+                    {
+                        //ToDo: node.error("Percents in column widths supported only in tables with explicit width; width of column %d treated as 'auto'" % (i+1))
+                    }
+                    else
+                    {
+                        double value = 0.0;
+                        bool result = double.TryParse(attr.Substring(0, attr.Length - 1), out value);
+                        if (result && value > 0)
+                        {
+                            column.Width = (double)fullwidth * value / 100;
+                            column.Auto = false;
+                        }
+                    }
+                }
+                else
+                {
+                    column.Width = node.ParseSpace(attr);
+                    column.Auto = true;
+                }
+            }
 
-			// Set  initial auto widths for cells with colspan == 1
-			foreach (RowDescriptor r in node.Rows)
-			{
-				foreach (var item in r.Cells.Select((value, i)=> new {i, value}))
-				{
-					CellDescriptor c = item.value;
-					if (c == null || c.Content == null || c.ColSpan > 1)
-						continue;
-					ColumnDescriptor column = node.Columns[item.i];
-					if (column.Auto)
-						column.Width = Math.Max(column.Width, c.Content.Width);
-				}
-			}
+            // Set  initial auto widths for cells with colspan == 1
+            foreach (RowDescriptor r in node.Rows)
+            {
+                foreach (var item in r.Cells.Select((value, i)=> new {i, value}))
+                {
+                    CellDescriptor c = item.value;
+                    if (c == null || c.Content == null || c.ColSpan > 1)
+                        continue;
+                    ColumnDescriptor column = node.Columns[item.i];
+                    if (column.Auto)
+                        column.Width = Math.Max(column.Width, c.Content.Width);
+                }
+            }
 
-			// Calculate auto widths for cells with colspan > 1
-			while (true)
-			{
-				List<ColumnDescriptor> adjustedColumns = new List<ColumnDescriptor>();
-				double adjustedWidth = 0;
+            // Calculate auto widths for cells with colspan > 1
+            while (true)
+            {
+                List<ColumnDescriptor> adjustedColumns = new List<ColumnDescriptor>();
+                double adjustedWidth = 0;
 
-				foreach (RowDescriptor r in node.Rows)
-				{
-					foreach (var item in r.Cells.Select((value,i) => new {i, value}))
-					{
-						CellDescriptor c = item.value;
-						if (c == null || c.Content == null || c.ColSpan == 1)
-							continue;
+                foreach (RowDescriptor r in node.Rows)
+                {
+                    foreach (var item in r.Cells.Select((value,i) => new {i, value}))
+                    {
+                        CellDescriptor c = item.value;
+                        if (c == null || c.Content == null || c.ColSpan == 1)
+                            continue;
 
-						List<ColumnDescriptor> columns = node.Columns.Skip(item.i).Take(item.i + c.ColSpan).ToList(); //ToDo: Verify
-						List<ColumnDescriptor> autoColumns = columns.Where(x => x.Auto == true).ToList();
-						if (autoColumns.Count == 0)
-							continue;
-						List<ColumnDescriptor> fixedColumns = columns.Where(x=> x.Auto == false).ToList();
+                        List<ColumnDescriptor> columns = node.Columns.Skip(item.i).Take(item.i + c.ColSpan).ToList(); //ToDo: Verify
+                        List<ColumnDescriptor> autoColumns = columns.Where(x => x.Auto == true).ToList();
+                        if (autoColumns.Count == 0)
+                            continue;
+                        List<ColumnDescriptor> fixedColumns = columns.Where(x=> x.Auto == false).ToList();
 
-						double fixedWidth = columns.TakeWhile((value, i) => i != columns.Count-1).Select(x=> x.SpaceAfter).Sum();
-						if (fixedColumns.Count > 0)
-							fixedWidth += fixedColumns.Select(x => x.Width).Sum(); //ToDo: Verify
-						double autoWidth = autoColumns.Select(x => x.Width).Sum(); //ToDo: Verify
-						if (c.Content.Width <= fixedWidth + autoWidth)
-							continue; // already fits
+                        double fixedWidth = columns.TakeWhile((value, i) => i != columns.Count-1).Select(x=> x.SpaceAfter).Sum();
+                        if (fixedColumns.Count > 0)
+                            fixedWidth += fixedColumns.Select(x => x.Width).Sum(); //ToDo: Verify
+                        double autoWidth = autoColumns.Select(x => x.Width).Sum(); //ToDo: Verify
+                        if (c.Content.Width <= fixedWidth + autoWidth)
+                            continue; // already fits
 
-						double requiredWidth = c.Content.Width - fixedWidth;
-						double unitWidth = requiredWidth / autoColumns.Count;
+                        double requiredWidth = c.Content.Width - fixedWidth;
+                        double unitWidth = requiredWidth / autoColumns.Count;
 
-						while (true)
-						{
-							List<ColumnDescriptor> oversizedColumns = autoColumns.Where(x=> x.Width >= unitWidth).ToList();
-							if (oversizedColumns.Count == 0)
-								break;
+                        while (true)
+                        {
+                            List<ColumnDescriptor> oversizedColumns = autoColumns.Where(x=> x.Width >= unitWidth).ToList();
+                            if (oversizedColumns.Count == 0)
+                                break;
 
-							autoColumns = autoColumns.Where(x => x.Width < unitWidth).ToList();
-							if (autoColumns.Count == 0)
-								break; //weird rounding effects
+                            autoColumns = autoColumns.Where(x => x.Width < unitWidth).ToList();
+                            if (autoColumns.Count == 0)
+                                break; //weird rounding effects
 
-							requiredWidth -= oversizedColumns.Select(x => x.Width).Sum();
-							unitWidth = requiredWidth / autoColumns.Count;
+                            requiredWidth -= oversizedColumns.Select(x => x.Width).Sum();
+                            unitWidth = requiredWidth / autoColumns.Count;
 
-							if (autoColumns.Count == 0)
-								continue; //protection against arithmetic overflow
+                            if (autoColumns.Count == 0)
+                                continue; //protection against arithmetic overflow
 
-							//Store the maximum unit width
-							if (unitWidth > adjustedWidth)
-							{
-								adjustedWidth = unitWidth;
-								adjustedColumns = autoColumns;
-							}
-						}
-					}
-				}
+                            //Store the maximum unit width
+                            if (unitWidth > adjustedWidth)
+                            {
+                                adjustedWidth = unitWidth;
+                                adjustedColumns = autoColumns;
+                            }
+                        }
+                    }
+                }
 
-				if (adjustedColumns.Count == 0)
-					break;
-				foreach (ColumnDescriptor col in adjustedColumns)
-					col.Width = adjustedWidth;
-			}
+                if (adjustedColumns.Count == 0)
+                    break;
+                foreach (ColumnDescriptor col in adjustedColumns)
+                    col.Width = adjustedWidth;
+            }
 
-			if (node.GetProperty("equalcolumns") == "true")
-			{
-				double globalWidth = node.Columns.Where(x => x.Auto = true).Select(x => x.Width).Max();
-				foreach (ColumnDescriptor col in node.Columns)
-				{
-					if (col.Auto == true)
-						col.Width = globalWidth;
-				}
-			}
-			if (fullwidth != null)
-			{
-				double delta = (double)fullwidth;
-				delta -= node.Columns.Select(x => x.Width).Sum();
-				delta -= node.Columns.TakeWhile((x, i) => i < node.Columns.Count - 1).Select(x => x.SpaceAfter).Sum(); //ToDo: verify
-				delta -= 2 * node.FrameSpacings[0];
-				if (delta != 0)
-				{
-					List<ColumnDescriptor> sizableColumns = node.Columns.Where(x => x.Fit == true).ToList();
-					if (sizableColumns.Count == 0)
-						sizableColumns = node.Columns.Where(x => x.Auto == true).ToList();
+            if (node.GetProperty("equalcolumns") == "true")
+            {
+                double globalWidth = node.Columns.Where(x => x.Auto = true).Select(x => x.Width).Max();
+                foreach (ColumnDescriptor col in node.Columns)
+                {
+                    if (col.Auto == true)
+                        col.Width = globalWidth;
+                }
+            }
+            if (fullwidth != null)
+            {
+                double delta = (double)fullwidth;
+                delta -= node.Columns.Select(x => x.Width).Sum();
+                delta -= node.Columns.TakeWhile((x, i) => i < node.Columns.Count - 1).Select(x => x.SpaceAfter).Sum(); //ToDo: verify
+                delta -= 2 * node.FrameSpacings[0];
+                if (delta != 0)
+                {
+                    List<ColumnDescriptor> sizableColumns = node.Columns.Where(x => x.Fit == true).ToList();
+                    if (sizableColumns.Count == 0)
+                        sizableColumns = node.Columns.Where(x => x.Auto == true).ToList();
 
-					if (sizableColumns.Count == 0)
-					{
-						//ToDo: Implement
-						//node.error("Overconstrained table layout: explicit table width specified, but no column has automatic width; table width attribute ignored")
-					}
-					else
-					{
-						delta /= sizableColumns.Count;
-						foreach (ColumnDescriptor col in sizableColumns)
-							col.Width += delta;
-					}
-				}
-			}
-		}
-		void CalculateRowHeights(MathNode node)
-		{
-			//Set  initial row heights for cells with rowspan == 1
-			double commonAxis = node.Axis();
-			foreach(RowDescriptor r in node.Rows)
-			{
-				r.Height = 0;
-				r.Depth = 0;
-				foreach (CellDescriptor c in r.Cells)
-				{
-					if (c == null || c.Content == null || c.RowSpan != 1)
-						continue;
-					double cellAxis = c.Content.Axis();
-					c.VShift = 0;
+                    if (sizableColumns.Count == 0)
+                    {
+                        //ToDo: Implement
+                        //node.error("Overconstrained table layout: explicit table width specified, but no column has automatic width; table width attribute ignored")
+                    }
+                    else
+                    {
+                        delta /= sizableColumns.Count;
+                        foreach (ColumnDescriptor col in sizableColumns)
+                            col.Width += delta;
+                    }
+                }
+            }
+        }
+        void CalculateRowHeights(MathNode node)
+        {
+            //Set  initial row heights for cells with rowspan == 1
+            double commonAxis = node.Axis();
+            foreach(RowDescriptor r in node.Rows)
+            {
+                r.Height = 0;
+                r.Depth = 0;
+                foreach (CellDescriptor c in r.Cells)
+                {
+                    if (c == null || c.Content == null || c.RowSpan != 1)
+                        continue;
+                    double cellAxis = c.Content.Axis();
+                    c.VShift = 0;
 
-					if (c.VAlign == "baseline")
-					{
-						if (r.AlignToAxis == true)
-							c.VShift -= commonAxis;
-						if (c.Content.AlignToAxis == true)
-							c.VShift += cellAxis;
-					}
-					else if (c.VAlign == "axis")
-					{
-						if (!r.AlignToAxis)
-							c.VShift += commonAxis;
-						if (!c.Content.AlignToAxis)
-							c.VShift -= cellAxis;
-					}
-					else
-					{
-						c.VShift = (r.Height - r.Depth - c.Content.Height + c.Content.Depth) / 2;
-					}
+                    if (c.VAlign == "baseline")
+                    {
+                        if (r.AlignToAxis == true)
+                            c.VShift -= commonAxis;
+                        if (c.Content.AlignToAxis == true)
+                            c.VShift += cellAxis;
+                    }
+                    else if (c.VAlign == "axis")
+                    {
+                        if (!r.AlignToAxis)
+                            c.VShift += commonAxis;
+                        if (!c.Content.AlignToAxis)
+                            c.VShift -= cellAxis;
+                    }
+                    else
+                    {
+                        c.VShift = (r.Height - r.Depth - c.Content.Height + c.Content.Depth) / 2;
+                    }
 
-					r.Height = Math.Max(r.Height, c.Content.Height + c.VShift);
-					r.Depth = Math.Max(r.Depth, c.Content.Depth - c.VShift);
-				}
-			}
+                    r.Height = Math.Max(r.Height, c.Content.Height + c.VShift);
+                    r.Depth = Math.Max(r.Depth, c.Content.Depth - c.VShift);
+                }
+            }
 
-			// Calculate heights for cells with rowspan > 1
-			while (true)
-			{
-				List<RowDescriptor> adjustedRows = new List<RowDescriptor>();
-				double adjustedSize = 0;
+            // Calculate heights for cells with rowspan > 1
+            while (true)
+            {
+                List<RowDescriptor> adjustedRows = new List<RowDescriptor>();
+                double adjustedSize = 0;
 
-				foreach (var item in node.Rows.Select((value,i) => new {i, value}))
-				{
-					RowDescriptor r = item.value;
-					foreach (CellDescriptor c in r.Cells)
-					{
-						if (c == null || c.Content == null || c.RowSpan == 1)
-							continue;
+                foreach (var item in node.Rows.Select((value,i) => new {i, value}))
+                {
+                    RowDescriptor r = item.value;
+                    foreach (CellDescriptor c in r.Cells)
+                    {
+                        if (c == null || c.Content == null || c.RowSpan == 1)
+                            continue;
 
-						List<RowDescriptor> rows = node.Rows.Skip(item.i).Take(item.i + c.RowSpan).ToList();
-						double requiredSize = c.Content.Height + c.Content.Depth;
-						requiredSize -= rows.Where((value, i) => i < rows.Count).Select(x=> x.SpaceAfter).Sum();
-						double fullSize = rows.Select(x=> x.Height+x.Depth).Sum();
-						if (fullSize >= requiredSize)
-							continue;
+                        List<RowDescriptor> rows = node.Rows.Skip(item.i).Take(item.i + c.RowSpan).ToList();
+                        double requiredSize = c.Content.Height + c.Content.Depth;
+                        requiredSize -= rows.Where((value, i) => i < rows.Count).Select(x=> x.SpaceAfter).Sum();
+                        double fullSize = rows.Select(x=> x.Height+x.Depth).Sum();
+                        if (fullSize >= requiredSize)
+                            continue;
 
-						double unitSize = requiredSize / rows.Count;
-						while (true)
-						{
-							List<RowDescriptor> oversizedRows = rows.Where(x => x.Height + x.Depth > unitSize).ToList(); //ToDo: Verify
-							if (oversizedRows.Count == 0)
-								break;
+                        double unitSize = requiredSize / rows.Count;
+                        while (true)
+                        {
+                            List<RowDescriptor> oversizedRows = rows.Where(x => x.Height + x.Depth > unitSize).ToList(); //ToDo: Verify
+                            if (oversizedRows.Count == 0)
+                                break;
 
-							rows = rows.Where(x => x.Height + x.Depth < unitSize).ToList();
-							if (rows.Count == 0)
-								break; // weird rounding effects
+                            rows = rows.Where(x => x.Height + x.Depth < unitSize).ToList();
+                            if (rows.Count == 0)
+                                break; // weird rounding effects
 
-							requiredSize -= oversizedRows.Select(x => x.Height + x.Depth).Sum();
-							unitSize = requiredSize / rows.Count;
-						}
-						
-						if (rows.Count == 0)
-							continue; // protection against arithmetic overflow
+                            requiredSize -= oversizedRows.Select(x => x.Height + x.Depth).Sum();
+                            unitSize = requiredSize / rows.Count;
+                        }
+                        
+                        if (rows.Count == 0)
+                            continue; // protection against arithmetic overflow
 
-						if (unitSize > adjustedSize)
-						{
-							adjustedSize = unitSize;
-							adjustedRows = rows;
-						}
-					}
-				}
+                        if (unitSize > adjustedSize)
+                        {
+                            adjustedSize = unitSize;
+                            adjustedRows = rows;
+                        }
+                    }
+                }
 
-				if (adjustedRows.Count == 0)
-					break;
+                if (adjustedRows.Count == 0)
+                    break;
 
-				foreach (RowDescriptor r in adjustedRows)
-				{
-					double delta = (adjustedSize - r.Height - r.Depth) / 2;
-					r.Height += delta;
-					r.Depth += delta;
-				}
-			}
+                foreach (RowDescriptor r in adjustedRows)
+                {
+                    double delta = (adjustedSize - r.Height - r.Depth) / 2;
+                    r.Height += delta;
+                    r.Depth += delta;
+                }
+            }
 
-			if (node.GetProperty("equalrows") == "true")
-			{
-				double maxvsize = node.Rows.Select(x => x.Height + x.Depth).Max();
-				foreach (RowDescriptor r in node.Rows)
-				{
-					double delta = (maxvsize - r.Height - r.Depth) / 2;
-					r.Height += delta;
-					r.Depth += delta;
-				}
-			}
-		}
-		object[] GetAlign(MathNode node)
-		{
-			string alignattr = node.GetProperty("align").Trim();
-			if (alignattr.Length == 0)
-				alignattr = MathDefaults.globalDefaults["align"];
+            if (node.GetProperty("equalrows") == "true")
+            {
+                double maxvsize = node.Rows.Select(x => x.Height + x.Depth).Max();
+                foreach (RowDescriptor r in node.Rows)
+                {
+                    double delta = (maxvsize - r.Height - r.Depth) / 2;
+                    r.Height += delta;
+                    r.Depth += delta;
+                }
+            }
+        }
+        object[] GetAlign(MathNode node)
+        {
+            string alignattr = node.GetProperty("align").Trim();
+            if (alignattr.Length == 0)
+                alignattr = MathDefaults.globalDefaults["align"];
 
-			List<string> splitalign = alignattr.Split(null).ToList();
-			string aligntype = splitalign[0];
+            List<string> splitalign = alignattr.Split(null).ToList();
+            string aligntype = splitalign[0];
 
-			int? alignRow = null;
-			if (splitalign.Count != 1)
-			{
-				alignRow = int.Parse(splitalign[1]);
-				// ToDo: the rest of the python code is not valid. Not implemented here.
-			}
-			return new object[] { aligntype, alignRow };
-		}
+            int? alignRow = null;
+            if (splitalign.Count != 1)
+            {
+                alignRow = int.Parse(splitalign[1]);
+                // ToDo: the rest of the python code is not valid. Not implemented here.
+            }
+            return new object[] { aligntype, alignRow };
+        }
 
-		private readonly MathNode m_node;
+        private readonly MathNode m_node;
         const double m_defaultSlope = 1.383;
     }
 }
