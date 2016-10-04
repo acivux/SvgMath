@@ -107,6 +107,7 @@
     <None Include="test27.mml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="test28.mml" />
     <None Include="test3.mml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

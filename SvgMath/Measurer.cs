@@ -170,12 +170,12 @@ namespace SvgMath
         }
         void MFenced()
         {
-            List<MathNode> old_children = m_node.Children;
+            //Add fences and separators, and process as a mrow
+            List<MathNode> old_children = new List<MathNode>(m_node.Children);
             m_node.Children.Clear();
 
-            //Add fences and separators, and process as a mrow
             string openingFence = m_node.GetProperty("open");
-            //ToDo: match original code -> openingFence = " ".join(openingFence.split())
+            openingFence = string.Join(" ", openingFence.Split(null));
             if (openingFence.Length > 0)
             {
                 MathNode opening = new MathNode("mo", new Dictionary<string, string>() { { "fence", "true" }, { "form", "prefix" } }, m_node.Config, m_node);

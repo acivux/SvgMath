@@ -12,7 +12,7 @@ namespace SvgMathTest
 	{
 		static void Main(string[] args)
 		{
-			Mml m = new Mml("test12.mml");
+			Mml m = new Mml("test28.mml");
 			m.MakeSvg().Save("test1.svg");
 		}
 
