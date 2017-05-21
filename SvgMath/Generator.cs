@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -7,7 +8,6 @@ namespace SvgMath
 {
     public static class Generator
     {
-
         public static XElement DrawImage(MathNode node)
         {
             //Top-level draw function: prepare the canvas, then call the draw method of the root node
@@ -20,9 +20,9 @@ namespace SvgMath
             double vsize = height + depth;
 
             Dictionary<string, string> attrs = new Dictionary<string, string>(){
-                {"width", string.Format("{0:F6}pt", node.Width)},
-                {"height", string.Format("{0:F6}pt", vsize)},
-                {"viewBox", string.Format("0 {0:F6} {1:F6} {2:F6}", (-(height+baseline)), node.Width, vsize)}
+                {"width", string.Format(CultureInfo.InvariantCulture, "{0:F6}pt", node.Width)},
+                {"height", string.Format(CultureInfo.InvariantCulture, "{0:F6}pt", vsize)},
+                {"viewBox", string.Format(CultureInfo.InvariantCulture, "0 {0:F6} {1:F6} {2:F6}", (-(height+baseline)), node.Width, vsize)}
             };
             
 
@@ -32,10 +32,10 @@ namespace SvgMath
 
             XElement metadataElement = creatElement("metadata", null, false);
             XElement metricElement = creatElement("metrics", new Dictionary<string, string>(){
-                {"baseline", string.Format("{0}", depth - baseline)},
-                {"axis", string.Format("{0}", depth - baseline + node.Axis())},
-                {"top", string.Format("{0}", depth + node.Height)},
-                {"bottom", string.Format("{0}", depth - node.Depth)}
+                {"baseline", string.Format(CultureInfo.InvariantCulture, "{0}", depth - baseline)},
+                {"axis", string.Format(CultureInfo.InvariantCulture, "{0}", depth - baseline + node.Axis())},
+                {"top", string.Format(CultureInfo.InvariantCulture, "{0}", depth + node.Height)},
+                {"bottom", string.Format(CultureInfo.InvariantCulture, "{0}", depth - node.Depth)}
             }, true);
             metadataElement.Add(metricElement);
             nodeElement.Add(metadataElement);
@@ -318,11 +318,11 @@ namespace SvgMath
             {
                 { "stroke", node.Color },
                 { "fill", "none" },
-                { "stroke-width", string.Format("{0:F6}", node.LineWidth)},
+                { "stroke-width", string.Format(CultureInfo.InvariantCulture, "{0:F6}", node.LineWidth)},
                 { "stroke-linecap", "butt" },
                 { "stroke-linejoin", "miter"},
                 { "stroke-miterlimit", "10"},
-                { "d", string.Format("M {0:F6} {1:F6} L {2:F6} {3:F6} L {4:F6} {5:F6} L {6:F6} {7:F6} L {8:F6} {9:F6} L {10:F6} {11:F6} L {12:F6} {13:F6} L {14:F6} {15:F6} L {16:F6} {17:F6}",x1,y1,x2a,y2a,x3a,y3a,x3b,y3b,x2b,y2b,x2c,y2c, x3,y3,x4,y4,x5,y5)}
+                { "d", string.Format(CultureInfo.InvariantCulture, "M {0:F6} {1:F6} L {2:F6} {3:F6} L {4:F6} {5:F6} L {6:F6} {7:F6} L {8:F6} {9:F6} L {10:F6} {11:F6} L {12:F6} {13:F6} L {14:F6} {15:F6} L {16:F6} {17:F6}",x1,y1,x2a,y2a,x3a,y3a,x3b,y3b,x2b,y2b,x2c,y2c, x3,y3,x4,y4,x5,y5)}
             };
             output.Add(creatElement("path", attrs));
         }
@@ -447,7 +447,7 @@ namespace SvgMath
                 foreach (var cellItem in row.Cells.Select((value, c)=> new {c, value}))
                 {
                     CellDescriptor cell = cellItem.value;
-                    if (cell == null || cell.ColSpan == null)
+                    if (cell == null || cell.ColSpan == 0)
                         continue;
                     for (int i = cellItem.c; i < cellItem.c + cell.ColSpan; i++)
                         vspans[i] = cell.RowSpan;
@@ -516,19 +516,19 @@ namespace SvgMath
             Dictionary<string, string> attrs = new Dictionary<string, string>();
             attrs.Add("fill", background);
             attrs.Add("stroke", "none");
-            attrs.Add("x", ((double)borderWidth / 2).ToString());
-            attrs.Add("y", ((double)borderWidth / 2 - node.Height).ToString());
-            attrs.Add("width", (node.Width - (double)borderWidth).ToString());
-            attrs.Add("height", (node.Height + node.Depth - (double)borderWidth).ToString());
+            attrs.Add("x", string.Format(CultureInfo.InvariantCulture, "{0}", (double)borderWidth / 2));
+            attrs.Add("y", string.Format(CultureInfo.InvariantCulture, "{0}", (double)borderWidth / 2 - node.Height));
+            attrs.Add("width", string.Format(CultureInfo.InvariantCulture, "{0}", node.Width - (double)borderWidth));
+            attrs.Add("height", string.Format(CultureInfo.InvariantCulture, "{0}", node.Height + node.Depth - (double)borderWidth));
 
             if (borderWidth != null && borderColor != null)
             {
                 attrs["stroke"] = borderColor;
-                attrs["stroke-width"] = borderWidth.ToString();
+                attrs["stroke-width"] = string.Format(CultureInfo.InvariantCulture, "{0}", borderWidth);
                 if (borderRadius != 0)
                 {
-                    attrs.Add("rx", borderRadius.ToString());
-                    attrs.Add("ry", borderRadius.ToString());
+                    attrs.Add("rx", string.Format(CultureInfo.InvariantCulture, "{0}", borderRadius));
+                    attrs.Add("ry", string.Format(CultureInfo.InvariantCulture, "{0}", borderRadius));
                 }
             }
             XElement rect = creatElement("rect", attrs);
@@ -538,7 +538,7 @@ namespace SvgMath
         {
             if (dx != 0 || dy != 0)
             {
-                XElement svge = creatElement("g", new Dictionary<string, string>() { { "transform", string.Format("translate({0}, {1})", dx, dy) } });
+                XElement svge = creatElement("g", new Dictionary<string, string>() { { "transform", string.Format(CultureInfo.InvariantCulture, "translate({0}, {1})", dx, dy) } });
                 node.Draw(svge);
                 output.Add(svge);
             }
@@ -579,13 +579,13 @@ namespace SvgMath
             {
                 {"fill", "none" },
                 {"stroke", color},
-                {"stroke-width", width.ToString() },
+                {"stroke-width", string.Format(CultureInfo.InvariantCulture, "{0}", width) },
                 {"stroke-linecap", "square" },
                 {"stroke-dasharray","none" },
-                {"x1", x1.ToString() },
-                {"y1", y1.ToString() },
-                {"x2", x2.ToString() },
-                {"y2", y2.ToString() }
+                {"x1", string.Format(CultureInfo.InvariantCulture, "{0}", x1) },
+                {"y1", string.Format(CultureInfo.InvariantCulture, "{0}", y1) },
+                {"x2", string.Format(CultureInfo.InvariantCulture, "{0}", x2) },
+                {"y2", string.Format(CultureInfo.InvariantCulture, "{0}", y2) }
             };
 
             if (strokeAttrs != null)
@@ -659,8 +659,8 @@ namespace SvgMath
                 double dashoffset = 5 - ((linelength / node.LineWidth + 3) % 10) / 2;
                 extraStyle = new Dictionary<string, string>()
                 {
-                    { "stroke-dasharray", string.Format("{0:F6},{1:F6}", node.LineWidth * 7, node.LineWidth * 3)},
-                    { "stroke-dashoffset", string.Format("{0:F6}", node.LineWidth * dashoffset) }
+                    { "stroke-dasharray", string.Format(CultureInfo.InvariantCulture, "{0:F6},{1:F6}", node.LineWidth * 7, node.LineWidth * 3)},
+                    { "stroke-dashoffset", string.Format(CultureInfo.InvariantCulture, "{0:F6}", node.LineWidth * dashoffset) }
                 };
             }
             DrawLine(output, node.Color, node.LineWidth, x1, y1, x2, y2, extraStyle);
@@ -676,10 +676,10 @@ namespace SvgMath
             {
                 { "fill", background},
                 {"stroke", node.Color },
-                { "stroke-width", node.BorderWidth.ToString() },
-                { "cx", cx.ToString() },
-                { "cy", cy.ToString() },
-                { "r", r.ToString() }
+                { "stroke-width", string.Format(CultureInfo.InvariantCulture, "{0}", node.BorderWidth) },
+                { "cx", string.Format(CultureInfo.InvariantCulture, "{0}", cx) },
+                { "cy", string.Format(CultureInfo.InvariantCulture, "{0}", cy) },
+                { "r", string.Format(CultureInfo.InvariantCulture, "{0}", r) }
             };
             output.Add(creatElement("circle", attrs));
             DrawTranslatedNode(node.Base, output, (node.Width - node.Base.Width) / 2, 0);
@@ -713,10 +713,10 @@ namespace SvgMath
             {
                 { "fill", node.Color },
                 { "font-family", string.Join(", ",fontFamilies) },
-                { "font-size", node.FontSize.ToString() },
+                { "font-size", string.Format(CultureInfo.InvariantCulture, "{0}", node.FontSize) },
                 { "text-anchor", "middle" },
-                { "x", string.Format("{0}",(node.Width + node.LeftBearing - node.RightBearing) / 2 / node.TextStretch)},
-                { "y", (-node.TextShift).ToString()}
+                { "x", string.Format(CultureInfo.InvariantCulture, "{0}",(node.Width + node.LeftBearing - node.RightBearing) / 2 / node.TextStretch)},
+                { "y", string.Format(CultureInfo.InvariantCulture, "{0}", -node.TextShift)}
             };
 
             if (node.FontWeight != "normal")
@@ -724,7 +724,7 @@ namespace SvgMath
             if (node.FontStyle != "normal")
                 attrs["font-style"] = node.FontStyle;
             if (node.TextStretch != 1)
-                attrs["transform"] = string.Format("scale({0}, 1)", node.TextStretch);
+                attrs["transform"] = string.Format(CultureInfo.InvariantCulture, "scale({0}, 1)", node.TextStretch);
 
             foreach (KeyValuePair<int, char> ch in MathDefaults.SpecialChars)
             {
