@@ -43,7 +43,10 @@
     <Compile Include="CellDescriptor.cs" />
     <Compile Include="Configuration\CharMetric.cs" />
     <Compile Include="ColumnDescriptor.cs" />
+    <Compile Include="Configuration\GenericFontMetric.cs" />
     <Compile Include="DictionaryExtension.cs" />
+    <Compile Include="DoubleOrNullExtension.cs" />
+    <Compile Include="FontLoader\TrueTypeFont.cs" />
     <Compile Include="MathContext.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Configuration\MathOperator.cs" />

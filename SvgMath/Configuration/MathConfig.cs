@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SvgMath.FontLoader;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -9,7 +11,7 @@ namespace SvgMath
 	public class MathConfig
 	{
 		
-		public MathConfig(string configFile)
+		public MathConfig(string configFile, bool loadFontsFromStaticFiles = false)
 		{
 			
 			if (configFile == null)
@@ -25,13 +27,14 @@ namespace SvgMath
 			m_configDoc = XDocument.Load(configFile);
 
 			m_verbose = bool.Parse(m_configDoc.Element("config").Attributes().FirstOrDefault(x => x.Name == "verbose").Value);
-			//Debug not implemented.
-			m_debug = null;
 			m_configDoc.Descendants("defaults").ToList().ForEach(elem => SetDefaults(elem));
 			m_configDoc.Descendants("fallback").ToList().ForEach(elem => SetFallBackFamilies(elem));
             m_configDoc.Descendants("mathvariant").ToList().ForEach(elem => SetMathVariant(elem));
 			m_configDoc.Descendants("operator-style").ToList().ForEach(elem => SetOperatorStyle(elem));
-            SetFontFamilies();
+            if (loadFontsFromStaticFiles)
+                SetFontFamiliesFromStaticFiles();
+            else
+                m_configDoc.Descendants("family").ToList().ForEach(elem => SetFontFamily(elem));
         }
 		void SetDefaults(XElement defaultsElement)
 		{
@@ -41,7 +44,7 @@ namespace SvgMath
 		{
 			FallbackFamilies.AddRange(fallbackElement.Attribute("family").Value.Split(',').Select(x => x.Trim()).ToList());
 		}
-		void SetFontFamilies()
+		void SetFontFamiliesFromStaticFiles()
 		{
 			DirectoryInfo fontFolder = new DirectoryInfo(Path.Combine(Directory.GetCurrentDirectory(), "configuration", "fontdata"));
             foreach (FileInfo fontFile in fontFolder.EnumerateFiles("*.xml"))
@@ -68,6 +71,32 @@ namespace SvgMath
                 }
             }
 		}
+
+        void SetFontFamily(XElement fontFamilyElement)
+        {
+            string familyName = fontFamilyElement.Attribute("name").Value;
+            foreach (XElement font in fontFamilyElement.Descendants("font"))
+            {
+                string ttf = font.Attribute("ttf")?.Value;
+                if (!string.IsNullOrEmpty(ttf))
+                {
+                    string weight = font.Attribute("weight")?.Value;
+                    if (weight == null || weight == "regular")
+                        weight = "normal";
+                    string style = font.Attribute("style")?.Value ?? "normal";
+                    string key = string.Format("{0} {1} {2}", weight, style, string.Join("", familyName.Trim().ToLower().Split(null)));
+                    if (!m_fontFamilies.ContainsKey(key))
+                    {
+                        m_fontFamilies.Add(key, new TrueTypeFont(ttf));
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException(string.Format("{0} already has metric", key));
+                    }
+                }
+            }
+        }
+
 		void SetMathVariant(XElement mathVariant)
 		{
 			string name = mathVariant.Attribute("name").Value;
@@ -84,7 +113,7 @@ namespace SvgMath
 			opElement.Attributes().Where(x=>x.Name != "operator").ToList().ForEach(x=> os.AddStyle(x.Name.LocalName, x.Value));
 			OperatorStyles.Add(os);
 		}
-		public FontMetric FindFont(string weight, string style, string family)
+		public GenericFontMetric FindFont(string weight, string style, string family)
 		{
 			if (string.IsNullOrEmpty(weight))
 				weight = "normal";
@@ -114,9 +143,6 @@ namespace SvgMath
 		public MathOperators MathOperators = new MathOperators();
 		readonly XDocument m_configDoc;
 		bool m_verbose;
-		IEnumerable<string> m_debug;
-		List<string> m_currentFamily;
-		Dictionary<string, FontMetric> m_fontFamilies = new Dictionary<string, FontMetric>();
-
-	}
+		Dictionary<string, GenericFontMetric> m_fontFamilies = new Dictionary<string, GenericFontMetric>();
+    }
 }

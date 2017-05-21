@@ -954,7 +954,7 @@ namespace SvgMath
             if (node.Scaling == "horizontal")
                 return;
 
-            if (symmetric && node.Symmetric != null)
+            if (symmetric && node.Symmetric)
             {
                 toHeight = (toHeight + toDepth) / 2;
                 toDepth = toHeight;

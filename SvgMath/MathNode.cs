@@ -216,13 +216,11 @@ namespace SvgMath
         }
         public double ParseSpace(string spaceattr, double unitlessScale = 0.75)
         {
-            double sign = 1.0;
             spaceattr = spaceattr.Trim();
             if (spaceattr.EndsWith("mathspace"))
             {
                 if (spaceattr.StartsWith("negative"))
                 {
-                    sign = -1.0;
                     spaceattr = spaceattr.Substring(8);
                 }
                 string realspaceattr = "0em";
@@ -287,7 +285,7 @@ namespace SvgMath
                 return ParseLength(lenattr, unitlessScale);
             }
         }
-        private FontMetric Metric()
+        private GenericFontMetric Metric()
         {
             if (NominalMetric == null)
             {
@@ -323,7 +321,7 @@ namespace SvgMath
             List<FontMetricRecord> metricList = new List<FontMetricRecord>();
             foreach (string family in familyList)
             {
-                FontMetric metric = Config.FindFont(FontWeight, FontStyle, family);
+                GenericFontMetric metric = Config.FindFont(FontWeight, FontStyle, family);
                 if (metric != null)
                 {
                     metricList.Add(new FontMetricRecord(family, metric));
@@ -609,9 +607,8 @@ namespace SvgMath
         public Dictionary<string, string> Attributes = new Dictionary<string, string>();
         public MathNode Parent;
         public List<FontMetricRecord> MetricList;
-        public FontMetric NominalMetric;
+        public GenericFontMetric NominalMetric;
         public readonly int NodeIndex;
-        readonly XElement m_xmlElement;
         public Dictionary<string, string> NodeDefaults;
         Measurer m_measurer;
         public MathOperator OpDefaults;

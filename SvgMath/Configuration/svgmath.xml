@@ -29,20 +29,20 @@
     
     <!-- Font families -->
     <family name="Times New Roman">
-         <font ttf="C:\WINDOWS\Fonts\times.ttf"/>
-         <font weight="bold" ttf="C:\WINDOWS\Fonts\timesbd.ttf"/>
-         <font style="italic" ttf="C:\WINDOWS\Fonts\timesi.ttf"/>
-         <font weight="bold" style="italic" ttf="C:\WINDOWS\Fonts\timesbi.ttf"/>        
+         <font ttf="C:\bin\times.ttf"/>
+         <font weight="bold" ttf="C:\bin\timesbd.ttf"/>
+         <font style="italic" ttf="C:\bin\timesi.ttf"/>
+         <font weight="bold" style="italic" ttf="C:\bin\timesbi.ttf"/>        
     </family>
 
     <family name="Arial">
-         <font ttf="C:\WINDOWS\Fonts\arial.ttf"/>
-         <font weight="bold" ttf="C:\WINDOWS\Fonts\arialbd.ttf"/>
-         <font style="italic" ttf="C:\WINDOWS\Fonts\ariali.ttf"/>
-         <font weight="bold" style="italic" ttf="C:\WINDOWS\Fonts\arialbi.ttf"/>        
+         <font ttf="C:\bin\arial.ttf"/>
+         <font weight="bold" ttf="C:\bin\arialbd.ttf"/>
+         <font style="italic" ttf="C:\bin\ariali.ttf"/>
+         <font weight="bold" style="italic" ttf="C:\bin\arialbi.ttf"/>        
     </family>
 
-    <family name="Courier New">
+    <!--<family name="Courier New">
          <font ttf="C:\WINDOWS\Fonts\cour.ttf"/>
          <font weight="bold" ttf="C:\WINDOWS\Fonts\courbd.ttf"/>
          <font style="italic" ttf="C:\WINDOWS\Fonts\couri.ttf"/>
@@ -65,7 +65,7 @@
 
     <family name="Lucida Sans Unicode">
          <font ttf="C:\WINDOWS\Fonts\l_10646.ttf"/>
-    </family>
+    </family>-->
 
     <!-- Math variant definitions -->
     <!-- Serif -->
