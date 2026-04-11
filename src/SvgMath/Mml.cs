@@ -22,16 +22,37 @@ namespace SvgMath
 			m_mathDocument = new XDocument(mmlContent);
 		}
 
+		/// <summary>Render Presentation MathML to SVG (existing behavior).</summary>
 		public XElement MakeSvg()
 		{
+			var root = BuildRootNode();
+			return root.MakeImage();
+		}
+
+		/// <summary>Convert Presentation MathML to a LaTeX math fragment (no surrounding <c>$</c> by default).
+		/// Assumes <c>amsmath</c>; <c>mathtools</c> is required for <c>\prescript</c> when using <c>mmultiscripts</c>.</summary>
+		public string MakeLatex(MathLatexOptions options = null)
+		{
+			var root = BuildRootNode();
+			var fragment = MathmlLatexEmitter.Emit(root);
+			options = options ?? new MathLatexOptions();
+			if (!options.WrapInDelimiters)
+				return fragment;
+			if (options.DisplayMode)
+				return "\\[" + fragment + "\\]";
+			return options.InlineOpen + fragment + options.InlineClose;
+		}
+
+		MathNode BuildRootNode()
+		{
 			m_mathConfig = new MathConfig(m_configFileName, m_loadFontsFromStaticFiles);
-			MathNode currentNode = new MathNode(
+			var currentNode = new MathNode(
 				m_mathDocument.Root.Name.LocalName,
 				m_mathDocument.Root.Attributes().ToDictionary(kvp => kvp.Name.ToString(), kvp => kvp.Value),
 				m_mathConfig,
 				null);
 			ParseMML(m_mathDocument.Root, currentNode, 0);
-			return currentNode.MakeImage();
+			return currentNode;
 		}
 
 		
