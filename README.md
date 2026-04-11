@@ -1,5 +1,8 @@
 # SvgMath
-C# (minimal effort)port if the Python SvgMath utility found at http://sourceforge.net/projects/svgmath/.
+
+C# (minimal effort) port of the Python SvgMath utility at http://sourceforge.net/projects/svgmath/.
+
+**Current release:** **1.1.0** — see [`releasenotes.md`](releasenotes.md) for changes (including broader MathML presentation handling).
 
 **Layout:** C# library in [`src/SvgMath`](src/SvgMath), automated tests in [`test/SvgMath.Tests`](test/SvgMath.Tests) (including golden SVG baselines for MathML samples under `TestAssets/MmlSamples`), original Python 0.3.3 tree in [`src/reference/SVGMath-0.3.3`](src/reference/SVGMath-0.3.3) (reference only).
 
