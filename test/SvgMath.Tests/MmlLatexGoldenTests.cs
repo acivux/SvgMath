@@ -25,11 +25,10 @@ namespace SvgMath.Tests
 		public void MmlLatex_MatchesGolden(string mmlFileName)
 		{
 			var baseName = Path.GetFileNameWithoutExtension(mmlFileName);
-			var configPath = TestOutputPaths.AssetPath("config_mml_samples.xml");
 			var mmlPath = Path.Combine(TestOutputPaths.OutputDirectory, "TestAssets", "MmlLatex", mmlFileName);
 			var goldenPath = Path.Combine(TestOutputPaths.OutputDirectory, "TestAssets", "MmlLatex", "Golden", baseName + ".tex");
 			Assert.True(File.Exists(goldenPath), "Missing golden file: " + goldenPath);
-			var mml = new Mml(mmlPath, configPath, loadFontsFromStaticFiles: false);
+			var mml = new Mml(mmlPath, TestMathConfigs.MmlSamplesTtf);
 			var actual = MmlGoldenTestUtil.NormalizeNewlines(mml.MakeLatex());
 			var expected = MmlGoldenTestUtil.NormalizeNewlines(File.ReadAllText(goldenPath).TrimEnd());
 			Assert.Equal(expected, actual);
@@ -38,9 +37,8 @@ namespace SvgMath.Tests
 		[Fact]
 		public void MakeLatex_WrapInDelimiters_Inline()
 		{
-			var configPath = TestOutputPaths.AssetPath("config_mml_samples.xml");
 			var mmlPath = Path.Combine(TestOutputPaths.OutputDirectory, "TestAssets", "MmlLatex", "binomial.mml");
-			var mml = new Mml(mmlPath, configPath, loadFontsFromStaticFiles: false);
+			var mml = new Mml(mmlPath, TestMathConfigs.MmlSamplesTtf);
 			var s = mml.MakeLatex(new MathLatexOptions { WrapInDelimiters = true, DisplayMode = false });
 			Assert.Equal("$\\binom{n}{k}$", s);
 		}
@@ -48,9 +46,8 @@ namespace SvgMath.Tests
 		[Fact]
 		public void MakeLatex_WrapInDelimiters_Display()
 		{
-			var configPath = TestOutputPaths.AssetPath("config_mml_samples.xml");
 			var mmlPath = Path.Combine(TestOutputPaths.OutputDirectory, "TestAssets", "MmlLatex", "binomial.mml");
-			var mml = new Mml(mmlPath, configPath, loadFontsFromStaticFiles: false);
+			var mml = new Mml(mmlPath, TestMathConfigs.MmlSamplesTtf);
 			var s = mml.MakeLatex(new MathLatexOptions { WrapInDelimiters = true, DisplayMode = true });
 			Assert.Equal("\\[\\binom{n}{k}\\]", s);
 		}

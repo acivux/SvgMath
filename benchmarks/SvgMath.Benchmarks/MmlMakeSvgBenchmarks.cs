@@ -15,6 +15,7 @@ namespace SvgMath.Benchmarks
 	public class MmlMakeSvgBenchmarks
 	{
 		string _configPath;
+		MathConfig _sharedConfig;
 		string _small;
 		string _large;
 		string _entityHeavy;
@@ -26,6 +27,7 @@ namespace SvgMath.Benchmarks
 			var dir = AppContext.BaseDirectory;
 			Directory.SetCurrentDirectory(dir);
 			_configPath = Path.Combine(dir, "TestAssets", "config_mml_samples.xml");
+			_sharedConfig = new MathConfig(_configPath, loadFontsFromStaticFiles: true);
 			var f = Path.Combine(dir, "Fixtures");
 			_small = Path.Combine(f, "test1.mml");
 			_large = Path.Combine(f, "complex1.mml");
@@ -45,41 +47,41 @@ namespace SvgMath.Benchmarks
 			};
 		}
 
-		[Benchmark(Description = "MmlSamples/test1.mml")]
+		[Benchmark(Description = "MmlSamples/test1.mml (shared MathConfig)")]
 		public void SmallSample_MakeSvg()
 		{
-			var mml = new Mml(_small, _configPath, loadFontsFromStaticFiles: true);
+			var mml = new Mml(_small, _sharedConfig);
 			mml.MakeSvg();
 		}
 
-		[Benchmark(Description = "TortureTests/Complexity/complex1.mml")]
+		[Benchmark(Description = "TortureTests/Complexity/complex1.mml (shared MathConfig)")]
 		public void LargeTorture_MakeSvg()
 		{
-			var mml = new Mml(_large, _configPath, loadFontsFromStaticFiles: true);
+			var mml = new Mml(_large, _sharedConfig);
 			mml.MakeSvg();
 		}
 
-		[Benchmark(Description = "Characters/EntityNames/a.mml")]
+		[Benchmark(Description = "Characters/EntityNames/a.mml (shared MathConfig)")]
 		public void EntityNames_MakeSvg()
 		{
-			var mml = new Mml(_entityHeavy, _configPath, loadFontsFromStaticFiles: true);
+			var mml = new Mml(_entityHeavy, _sharedConfig);
 			mml.MakeSvg();
 		}
 
-		[Benchmark(Description = "Golden-test parity: MakeSvg + XML serialize (test1)")]
+		[Benchmark(Description = "Golden-test parity: MakeSvg + XML serialize (test1), shared MathConfig")]
 		public void SmallSample_MakeSvg_And_SerializeLikeGoldens()
 		{
-			var mml = new Mml(_small, _configPath, loadFontsFromStaticFiles: true);
+			var mml = new Mml(_small, _sharedConfig);
 			var svg = mml.MakeSvg();
 			SerializeSvg(svg);
 		}
 
-		[Benchmark(Description = "10 fixed W3C presentation fixtures, MakeSvg each")]
+		[Benchmark(Description = "10 fixed W3C presentation fixtures, MakeSvg each, shared MathConfig")]
 		public void W3C_Batch10_MakeSvg()
 		{
 			for (var i = 0; i < _batch10.Length; i++)
 			{
-				var mml = new Mml(_batch10[i], _configPath, loadFontsFromStaticFiles: true);
+				var mml = new Mml(_batch10[i], _sharedConfig);
 				mml.MakeSvg();
 			}
 		}

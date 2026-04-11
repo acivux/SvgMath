@@ -10,7 +10,6 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Semantics_WithPresentationFirstChild_MatchesUnwrappedSvg()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var withSemantics = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -19,12 +18,10 @@ namespace SvgMath.Tests
     <annotation encoding=""application/x-tex"">x</annotation>
   </semantics>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var plain = new Mml(
 				XElement.Parse(@"<math xmlns=""http://www.w3.org/1998/Math/MathML""><mrow><mi>x</mi></mrow></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 
 			Assert.Equal(
 				MmlGoldenTestUtil.SerializeSvg(plain.MakeSvg()),
@@ -34,7 +31,6 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Semantics_MakeLatex_MatchesUnwrapped()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var withSemantics = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -43,12 +39,10 @@ namespace SvgMath.Tests
     <annotation>note</annotation>
   </semantics>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var plain = new Mml(
 				XElement.Parse(@"<math xmlns=""http://www.w3.org/1998/Math/MathML""><mi>y</mi></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 
 			Assert.Equal(plain.MakeLatex(), withSemantics.MakeLatex());
 		}

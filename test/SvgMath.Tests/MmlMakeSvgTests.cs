@@ -24,11 +24,9 @@ namespace SvgMath.Tests
 		[Fact]
 		public void MAction_InvalidSelection_ThrowsInvalidOperationException()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var mml = new Mml(
 				XElement.Parse(@"<math xmlns=""http://www.w3.org/1998/Math/MathML""><maction selection=""not-an-int""><mn>1</mn></maction></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var ex = Assert.Throws<InvalidOperationException>(() => mml.MakeSvg());
 			Assert.Contains("selection", ex.Message, StringComparison.OrdinalIgnoreCase);
 		}
@@ -36,11 +34,9 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Throws_WhenRootElementIsNotMath()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var mml = new Mml(
 				XElement.Parse(@"<mrow xmlns=""http://www.w3.org/1998/Math/MathML""><mi>x</mi></mrow>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			Assert.Throws<InvalidOperationException>(() => mml.MakeSvg());
 		}
 	}

@@ -16,17 +16,14 @@ namespace SvgMath.Tests
 		[InlineData("4.0")]
 		public void SamePresentation_WithDifferentMathVersion_YieldsIdenticalSvg(string version)
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var baseline = new Mml(
 				XElement.Parse(@"<math xmlns=""http://www.w3.org/1998/Math/MathML""><mi>x</mi></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var baselineSvg = MmlGoldenTestUtil.SerializeSvg(baseline.MakeSvg());
 
 			var mml = new Mml(
 				XElement.Parse($@"<math xmlns=""http://www.w3.org/1998/Math/MathML"" version=""{version}""><mi>x</mi></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var svg = MmlGoldenTestUtil.SerializeSvg(mml.MakeSvg());
 
 			Assert.Equal(baselineSvg, svg);
@@ -35,18 +32,15 @@ namespace SvgMath.Tests
 		[Fact]
 		public void IntentAndArgOnToken_Passthrough_DoesNotBreakRendering()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var baseline = new Mml(
 				XElement.Parse(@"<math xmlns=""http://www.w3.org/1998/Math/MathML""><mi>x</mi></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var baselineSvg = MmlGoldenTestUtil.SerializeSvg(baseline.MakeSvg());
 
 			var mml = new Mml(
 				XElement.Parse(
 					@"<math xmlns=""http://www.w3.org/1998/Math/MathML""><mi intent=""identifier"">x</mi></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var svg = MmlGoldenTestUtil.SerializeSvg(mml.MakeSvg());
 
 			Assert.Equal(baselineSvg, svg);
@@ -55,16 +49,14 @@ namespace SvgMath.Tests
 		[Fact]
 		public void ForeignNamespaceChild_IsIgnored_DoesNotThrow()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var math = new XElement(MathNs + "math",
 				new XElement(MathNs + "mi", "x"),
 				new XElement(ForeignNs + "extra", "should-not-appear"));
 
-			var mml = new Mml(math, path, loadFontsFromStaticFiles: true);
+			var mml = new Mml(math, TestMathConfigs.MathSize10StaticFonts);
 			var baseline = new Mml(
 				XElement.Parse(@"<math xmlns=""http://www.w3.org/1998/Math/MathML""><mi>x</mi></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 
 			Assert.Equal(
 				MmlGoldenTestUtil.SerializeSvg(baseline.MakeSvg()),
@@ -74,11 +66,9 @@ namespace SvgMath.Tests
 		[Fact]
 		public void LegacyNoNamespaceElements_AreStillParsed()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var mml = new Mml(
 				XElement.Parse(@"<math><mi>x</mi></math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var svg = mml.MakeSvg();
 			Assert.NotNull(svg);
 			Assert.Equal("svg", svg.Name.LocalName);

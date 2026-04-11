@@ -10,7 +10,6 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Malignmark_InCell_Ignored_MatchesCellWithoutMark()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var withMark = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -18,15 +17,13 @@ namespace SvgMath.Tests
     <mtd><mi>x</mi><malignmark/></mtd>
   </mtr></mtable>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var plain = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
   <mtable><mtr><mtd><mi>x</mi></mtd></mtr></mtable>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 
 			Assert.Equal(
 				MmlGoldenTestUtil.SerializeSvg(plain.MakeSvg()),
@@ -36,7 +33,6 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Semantics_ApplyFirstChild_ThrowsInvalidOperationException()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var mml = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -45,8 +41,7 @@ namespace SvgMath.Tests
     <annotation encoding=""application/x-tex"">x+y</annotation>
   </semantics>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var ex = Assert.Throws<InvalidOperationException>(() => mml.MakeSvg());
 			Assert.Contains("Content MathML", ex.Message, StringComparison.Ordinal);
 		}

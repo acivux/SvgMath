@@ -4,6 +4,8 @@ BenchmarkDotNet jobs for [`Mml.MakeSvg`](../../src/SvgMath/Mml.cs) (and optional
 
 **Prerequisites:** Same as tests — fixtures link to `test/SvgMath.Tests/TestAssets` and `configuration/fontdata` is copied from the library (see `.csproj`).
 
+**`MathConfig`:** Benchmarks build one [`MathConfig`](../../src/SvgMath/Configuration/MathConfig.cs) in `GlobalSetup` and pass it to [`Mml`](../../src/SvgMath/Mml.cs) so each iteration measures parse + layout + SVG generation, not reloading all font metrics every time (which dominated older numbers).
+
 ## Commands
 
 Run all benchmarks (default job; can take several minutes):

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 
 
@@ -19,15 +20,43 @@ namespace SvgMath
 		}
 		public Mml(string mmlFile, string configFile = null, bool loadFontsFromStaticFiles = false)
 		{
+			m_sharedMathConfig = null;
 			m_configFileName = configFile;
 			m_loadFontsFromStaticFiles = loadFontsFromStaticFiles;
 			var prepared = HtmlEntityExpander.PrepareMathMlXml(mmlFile);
 			m_mathDocument = XDocument.Parse(prepared, LoadOptions.None);
 		}
+
+		/// <summary>
+		/// Use a pre-built <see cref="MathConfig"/> (e.g. cached fonts) instead of loading configuration on each <see cref="MakeSvg"/> / <see cref="MakeLatex"/> call.
+		/// </summary>
+		public Mml(string mmlFile, MathConfig mathConfig)
+		{
+			if (mathConfig == null)
+				throw new ArgumentNullException(nameof(mathConfig));
+			m_sharedMathConfig = mathConfig;
+			m_configFileName = null;
+			m_loadFontsFromStaticFiles = false;
+			var prepared = HtmlEntityExpander.PrepareMathMlXml(mmlFile);
+			m_mathDocument = XDocument.Parse(prepared, LoadOptions.None);
+		}
+
 		public Mml(XElement mmlContent, string configFile = null, bool loadFontsFromStaticFiles = false)
 		{
+			m_sharedMathConfig = null;
 			m_configFileName = configFile;
 			m_loadFontsFromStaticFiles = loadFontsFromStaticFiles;
+			m_mathDocument = new XDocument(mmlContent);
+		}
+
+		/// <inheritdoc cref="Mml(string, MathConfig)"/>
+		public Mml(XElement mmlContent, MathConfig mathConfig)
+		{
+			if (mathConfig == null)
+				throw new ArgumentNullException(nameof(mathConfig));
+			m_sharedMathConfig = mathConfig;
+			m_configFileName = null;
+			m_loadFontsFromStaticFiles = false;
 			m_mathDocument = new XDocument(mmlContent);
 		}
 
@@ -54,7 +83,7 @@ namespace SvgMath
 
 		MathNode BuildRootNode()
 		{
-			m_mathConfig = new MathConfig(m_configFileName, m_loadFontsFromStaticFiles);
+			m_mathConfig = m_sharedMathConfig ?? new MathConfig(m_configFileName, m_loadFontsFromStaticFiles);
 			var currentNode = new MathNode(
 				m_mathDocument.Root.Name.LocalName,
 				m_mathDocument.Root.Attributes().ToDictionary(kvp => kvp.Name.ToString(), kvp => kvp.Value),
@@ -190,6 +219,7 @@ namespace SvgMath
 		}
 
 
+		readonly MathConfig m_sharedMathConfig;
 		readonly string m_configFileName;
 		readonly bool m_loadFontsFromStaticFiles;
 		readonly XDocument m_mathDocument;

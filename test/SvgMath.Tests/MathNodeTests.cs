@@ -10,8 +10,7 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Mi_AppliesItalicDefault_ToSupplementaryPlaneIdentifier()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
-			var cfg = new MathConfig(path, loadFontsFromStaticFiles: true);
+			var cfg = TestMathConfigs.MathSize10StaticFonts;
 			var math = new MathNode("math", new Dictionary<string, string>(), cfg, null);
 			var mi = new MathNode("mi", new Dictionary<string, string>(), cfg, math);
 			mi.Text = "\uD835\uDC00";
@@ -22,8 +21,7 @@ namespace SvgMath.Tests
 		[Fact]
 		public void GetListProperty_ReturnsEmpty_WhenPropertyMissing()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
-			var cfg = new MathConfig(path, loadFontsFromStaticFiles: true);
+			var cfg = TestMathConfigs.MathSize10StaticFonts;
 			var math = new MathNode("math", new Dictionary<string, string>(), cfg, null);
 			var node = new MathNode("menclose", new Dictionary<string, string>(), cfg, math);
 			node.NodeDefaults = new Dictionary<string, string> { { "mathsize", "12pt" } };
@@ -35,8 +33,7 @@ namespace SvgMath.Tests
 		[Fact]
 		public void ParseSpace_Throws_ForUnknownMathspaceToken()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
-			var cfg = new MathConfig(path, loadFontsFromStaticFiles: true);
+			var cfg = TestMathConfigs.MathSize10StaticFonts;
 			var math = new MathNode("math", new Dictionary<string, string>(), cfg, null);
 			var node = new MathNode("mo", new Dictionary<string, string>(), cfg, math);
 			node.NodeDefaults = new Dictionary<string, string>(cfg.Defaults);

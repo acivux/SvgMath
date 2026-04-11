@@ -33,12 +33,11 @@ namespace SvgMath.Tests
 		[MemberData(nameof(W3cMmlRelativePaths))]
 		public void W3cMml_MatchesGolden(string relativeMmlPath)
 		{
-			var configPath = TestOutputPaths.AssetPath("config_mml_samples.xml");
 			var w3Root = Path.Combine(TestOutputPaths.OutputDirectory, "TestAssets", "w3tests");
 			var mmlPath = Path.Combine(w3Root, relativeMmlPath);
 			var goldenPath = Path.Combine(w3Root, "Golden", Path.ChangeExtension(relativeMmlPath, ".svg"));
 			Assert.True(File.Exists(goldenPath), "Missing golden file: " + goldenPath);
-			var mml = new Mml(mmlPath, configPath, loadFontsFromStaticFiles: true);
+			var mml = new Mml(mmlPath, TestMathConfigs.MmlSamplesStaticFonts);
 			var svg = mml.MakeSvg();
 			var actual = MmlGoldenTestUtil.SerializeSvg(svg);
 			var expected = MmlGoldenTestUtil.NormalizeNewlines(File.ReadAllText(goldenPath));

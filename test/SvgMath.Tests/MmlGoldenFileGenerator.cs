@@ -29,11 +29,10 @@ namespace SvgMath.Tests
 			var goldenDir = GetRepoMmlSamplesGoldenDirectory();
 			Directory.CreateDirectory(goldenDir);
 			var mmlDir = Path.Combine(TestOutputPaths.OutputDirectory, "TestAssets", "MmlSamples");
-			var configPath = TestOutputPaths.AssetPath("config_mml_samples.xml");
 			foreach (var mmlPath in Directory.GetFiles(mmlDir, "*.mml").OrderBy(Path.GetFileName, StringComparer.Ordinal))
 			{
 				var name = Path.GetFileNameWithoutExtension(mmlPath);
-				var mml = new Mml(mmlPath, configPath, loadFontsFromStaticFiles: true);
+				var mml = new Mml(mmlPath, TestMathConfigs.MmlSamplesStaticFonts);
 				var svg = mml.MakeSvg();
 				var text = MmlGoldenTestUtil.SerializeSvg(svg);
 				File.WriteAllText(Path.Combine(goldenDir, name + ".svg"), text);
@@ -48,7 +47,6 @@ namespace SvgMath.Tests
 			if (!Directory.Exists(mmlRoot))
 				throw new DirectoryNotFoundException("Missing W3C inputs: " + mmlRoot);
 
-			var configPath = TestOutputPaths.AssetPath("config_mml_samples.xml");
 			var ok = 0;
 			var failed = 0;
 			foreach (var mmlPath in Directory.EnumerateFiles(mmlRoot, "*.mml", SearchOption.AllDirectories).OrderBy(p => p, StringComparer.Ordinal))
@@ -60,7 +58,7 @@ namespace SvgMath.Tests
 				Directory.CreateDirectory(Path.GetDirectoryName(outPath));
 				try
 				{
-					var mml = new Mml(mmlPath, configPath, loadFontsFromStaticFiles: true);
+					var mml = new Mml(mmlPath, TestMathConfigs.MmlSamplesStaticFonts);
 					var svg = mml.MakeSvg();
 					var text = MmlGoldenTestUtil.SerializeSvg(svg);
 					File.WriteAllText(outPath, text);
@@ -82,11 +80,10 @@ namespace SvgMath.Tests
 			var goldenDir = GetRepoMmlSamplesGoldenDirectory();
 			Directory.CreateDirectory(goldenDir);
 			var mmlDir = Path.Combine(TestOutputPaths.OutputDirectory, "TestAssets", "MmlSamples");
-			var configPath = TestOutputPaths.AssetPath("config_mml_samples.xml");
 			foreach (var mmlPath in Directory.GetFiles(mmlDir, "*.mml").OrderBy(Path.GetFileName, StringComparer.Ordinal))
 			{
 				var name = Path.GetFileNameWithoutExtension(mmlPath);
-				var mml = new Mml(mmlPath, configPath, loadFontsFromStaticFiles: false);
+				var mml = new Mml(mmlPath, TestMathConfigs.MmlSamplesTtf);
 				var tex = MmlGoldenTestUtil.NormalizeNewlines(mml.MakeLatex().TrimEnd());
 				File.WriteAllText(Path.Combine(goldenDir, name + ".tex"), tex + "\n");
 			}

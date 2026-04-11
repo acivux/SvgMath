@@ -9,7 +9,6 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Mstack_TwoMsrows_MatchesEquivalentMtableSvg()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var stack = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -18,8 +17,7 @@ namespace SvgMath.Tests
     <msrow><mn>3</mn><mn>4</mn></msrow>
   </mstack>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var table = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -28,8 +26,7 @@ namespace SvgMath.Tests
     <mtr><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd></mtr>
   </mtable>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 
 			Assert.Equal(
 				MmlGoldenTestUtil.SerializeSvg(table.MakeSvg()),
@@ -39,7 +36,6 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Mstack_Msgroup_RendersAsRowOfCells()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var stack = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -47,15 +43,13 @@ namespace SvgMath.Tests
     <msgroup><mn>5</mn><mn>0</mn></msgroup>
   </mstack>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var table = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
   <mtable><mtr><mtd><mn>5</mn></mtd><mtd><mn>0</mn></mtd></mtr></mtable>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 
 			Assert.Equal(
 				MmlGoldenTestUtil.SerializeSvg(table.MakeSvg()),
@@ -65,7 +59,6 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Mstack_Msline_ProducesNonEmptySvg()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var mml = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -75,8 +68,7 @@ namespace SvgMath.Tests
     <msrow><mn>2</mn></msrow>
   </mstack>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var svg = mml.MakeSvg();
 			Assert.NotNull(svg);
 			Assert.Equal("svg", svg.Name.LocalName);
@@ -87,7 +79,6 @@ namespace SvgMath.Tests
 		[Fact]
 		public void Mstack_MscarriesRow_MatchesEquivalentMtable()
 		{
-			var path = TestOutputPaths.AssetPath("config_mathsize_10.xml");
 			var stack = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -96,8 +87,7 @@ namespace SvgMath.Tests
     <msrow><mn>1</mn><mn>1</mn></msrow>
   </mstack>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 			var table = new Mml(
 				XElement.Parse(@"
 <math xmlns=""http://www.w3.org/1998/Math/MathML"">
@@ -106,8 +96,7 @@ namespace SvgMath.Tests
     <mtr><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd></mtr>
   </mtable>
 </math>"),
-				path,
-				loadFontsFromStaticFiles: true);
+				TestMathConfigs.MathSize10StaticFonts);
 
 			Assert.Equal(
 				MmlGoldenTestUtil.SerializeSvg(table.MakeSvg()),
