@@ -68,19 +68,42 @@ namespace SvgMath
 		{
 			int recDepth = depth + 1;
 			foreach (XElement element in root.Elements().Where(IsMathMLElement))
+				AddMathSubtree(element, parentNode, recDepth);
+		}
+
+		/// <summary>First child of <c>semantics</c> used for layout: not <c>annotation</c> / <c>annotation-xml</c>.</summary>
+		static XElement FirstSemanticsExpressionChild(XElement semantics)
+		{
+			return semantics.Elements()
+				.Where(IsMathMLElement)
+				.FirstOrDefault(e =>
+				{
+					var n = e.Name.LocalName;
+					return n != "annotation" && n != "annotation-xml";
+				});
+		}
+
+		void AddMathSubtree(XElement element, MathNode parentNode, int recDepth)
+		{
+			if (element.Name.LocalName == "semantics")
 			{
-				MathNode mn = new MathNode(
-					element.Name.LocalName,
-					element.Attributes().ToDictionary(kvp => kvp.Name.ToString(), kvp => kvp.Value),
-					m_mathConfig, parentNode);
-
-				element.Nodes()
-					.Where(x => x.NodeType == System.Xml.XmlNodeType.Text || x.NodeType == System.Xml.XmlNodeType.Whitespace)
-					.ToList()
-					.ForEach(x => mn.Text = mn.Text + string.Join(" ", ((XText)x).Value.Split(null)));
-
-				ParseMML(element, mn, recDepth);
+				var first = FirstSemanticsExpressionChild(element);
+				if (first != null)
+					AddMathSubtree(first, parentNode, recDepth);
+				return;
 			}
+
+			MathNode mn = new MathNode(
+				element.Name.LocalName,
+				element.Attributes().ToDictionary(kvp => kvp.Name.ToString(), kvp => kvp.Value),
+				m_mathConfig, parentNode);
+
+			element.Nodes()
+				.Where(x => x.NodeType == System.Xml.XmlNodeType.Text || x.NodeType == System.Xml.XmlNodeType.Whitespace)
+				.ToList()
+				.ForEach(x => mn.Text = mn.Text + string.Join(" ", ((XText)x).Value.Split(null)));
+
+			ParseMML(element, mn, recDepth);
 		}
 
 
