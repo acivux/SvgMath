@@ -89,6 +89,8 @@ namespace SvgMath
 					return EmitMo(node);
 				case "mi":
 					return EmitMi(node);
+				case "mglyph":
+					return "\\text{" + EscapeText(GetAttr(node, "alt", "") ?? "") + "}";
 				case "mn":
 					return EmitMn(node);
 				case "mtext":

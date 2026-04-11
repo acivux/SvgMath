@@ -165,6 +165,9 @@ namespace SvgMath
 				case "mtext":
 					Generator.GMText(this, output);
 					break;
+				case "mglyph":
+					Generator.GMGlyph(this, output);
+					break;
 				case "ms":
 					Generator.GMs(this, output);
 					break;

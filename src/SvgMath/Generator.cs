@@ -193,6 +193,11 @@ namespace SvgMath
         {
             DrawSVGText(node, output);
         }
+        /// <summary>Custom glyph: <c>alt</c> text rendered like other tokens; <c>src</c> is not embedded.</summary>
+        public static void GMGlyph(MathNode node, XElement output)
+        {
+            DrawSVGText(node, output);
+        }
         public static void GMs(MathNode node, XElement output)
         {
             DrawSVGText(node, output);

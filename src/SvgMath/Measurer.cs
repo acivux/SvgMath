@@ -107,6 +107,9 @@ namespace SvgMath
                 case "mtd":
                     MTd();
                     break;
+                case "mglyph":
+                    MGlyph();
+                    break;
                 default:
                     throw new InvalidOperationException(string.Format("MathML element '{0}' is unsupported", m_node.ElementName));
             }
@@ -246,6 +249,18 @@ namespace SvgMath
         void Mi()
         {
             m_node.MeasureText();
+        }
+        void MGlyph()
+        {
+            string alt = m_node.Attributes.ContainsKey("alt") ? m_node.Attributes["alt"] : "";
+            m_node.Text = alt;
+            m_node.MeasureText();
+            if (m_node.Attributes.ContainsKey("width"))
+            {
+                double w = m_node.ParseLength(m_node.Attributes["width"]);
+                if (w > m_node.Width)
+                    m_node.Width = w;
+            }
         }
         void MText()
         {
