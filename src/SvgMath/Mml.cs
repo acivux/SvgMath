@@ -71,6 +71,49 @@ namespace SvgMath
 				AddMathSubtree(element, parentNode, recDepth);
 		}
 
+		/// <summary>Elementary math <c>mstack</c> is lowered to <c>mtable</c> (rows as <c>mtr</c>/<c>mtd</c>) for layout.</summary>
+		internal static XElement MStackToMtable(XElement mstack)
+		{
+			var ns = mstack.Name.Namespace;
+			var table = new XElement(ns + "mtable");
+			foreach (XElement row in mstack.Elements().Where(IsMathMLElement))
+			{
+				string ln = row.Name.LocalName;
+				if (ln == "msrow" || ln == "msgroup" || ln == "mscarries")
+				{
+					var mtr = new XElement(ns + "mtr");
+					foreach (XElement cell in row.Elements().Where(IsMathMLElement))
+						mtr.Add(new XElement(ns + "mtd", MtdContentForStackCell(cell)));
+					table.Add(mtr);
+				}
+				else if (ln == "msline")
+				{
+					var lineMo = new XElement(ns + "mo", new XAttribute("stretchy", "true"), "\u2015");
+					table.Add(new XElement(ns + "mtr", new XElement(ns + "mtd", lineMo)));
+				}
+				else
+					table.Add(new XElement(ns + "mtr", new XElement(ns + "mtd", new XElement(row))));
+			}
+
+			return table;
+		}
+
+		static XElement MtdContentForStackCell(XElement cell)
+		{
+			if (cell.Name.LocalName == "mscarry")
+			{
+				var inner = cell.Elements().Where(IsMathMLElement).ToList();
+				var ns = cell.Name.Namespace;
+				if (inner.Count == 0)
+					return new XElement(ns + "none");
+				if (inner.Count == 1)
+					return new XElement(inner[0]);
+				return new XElement(ns + "mrow", inner.Select(c => new XElement(c)));
+			}
+
+			return new XElement(cell);
+		}
+
 		/// <summary>First child of <c>semantics</c> used for layout: not <c>annotation</c> / <c>annotation-xml</c>.</summary>
 		static XElement FirstSemanticsExpressionChild(XElement semantics)
 		{
@@ -90,6 +133,12 @@ namespace SvgMath
 				var first = FirstSemanticsExpressionChild(element);
 				if (first != null)
 					AddMathSubtree(first, parentNode, recDepth);
+				return;
+			}
+
+			if (element.Name.LocalName == "mstack")
+			{
+				AddMathSubtree(MStackToMtable(element), parentNode, recDepth);
 				return;
 			}
 
