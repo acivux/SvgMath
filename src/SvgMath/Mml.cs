@@ -9,6 +9,14 @@ namespace SvgMath
 	 */
 	public class Mml
 	{
+		/// <summary>W3C MathML namespace (MathML 2, 3, and 4 use the same URI).</summary>
+		public const string MathMlNamespaceUri = "http://www.w3.org/1998/Math/MathML";
+
+		static bool IsMathMLElement(XElement e)
+		{
+			var ns = e.Name.NamespaceName;
+			return ns.Length == 0 || ns == MathMlNamespaceUri;
+		}
 		public Mml(string mmlFile, string configFile = null, bool loadFontsFromStaticFiles = false)
 		{
 			m_configFileName = configFile;
@@ -59,7 +67,7 @@ namespace SvgMath
 		void ParseMML(XElement root, MathNode parentNode, int depth)
 		{
 			int recDepth = depth + 1;
-			foreach (XElement element in root.Elements())
+			foreach (XElement element in root.Elements().Where(IsMathMLElement))
 			{
 				MathNode mn = new MathNode(
 					element.Name.LocalName,
