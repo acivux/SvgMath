@@ -8,7 +8,11 @@ using Xunit;
 
 namespace SvgMath.Tests
 {
-	/// <summary>Run once: <c>dotnet test -p:GenerateGoldens=true --filter WriteGoldenSvgFiles_ToSourceTree</c></summary>
+	/// <summary>
+	/// Regenerate baselines (run from repo root):
+	/// <c>dotnet test -p:GenerateGoldens=true --filter WriteGoldenSvgFiles_ToSourceTree</c> (SVG),
+	/// <c>dotnet test -p:GenerateGoldens=true --filter WriteGoldenLatexFiles_ToSourceTree</c> (LaTeX for <c>MmlSamples</c>).
+	/// </summary>
 	public sealed class MmlGoldenFileGenerator : SvgMathTestBase
 	{
 		[Fact]
@@ -25,6 +29,22 @@ namespace SvgMath.Tests
 				var svg = mml.MakeSvg();
 				var text = MmlGoldenTestUtil.SerializeSvg(svg);
 				File.WriteAllText(Path.Combine(goldenDir, name + ".svg"), text);
+			}
+		}
+
+		[Fact]
+		public void WriteGoldenLatexFiles_ToSourceTree()
+		{
+			var goldenDir = GetRepoGoldenDirectory();
+			Directory.CreateDirectory(goldenDir);
+			var mmlDir = Path.Combine(TestOutputPaths.OutputDirectory, "TestAssets", "MmlSamples");
+			var configPath = TestOutputPaths.AssetPath("config_mml_samples.xml");
+			foreach (var mmlPath in Directory.GetFiles(mmlDir, "*.mml").OrderBy(Path.GetFileName, StringComparer.Ordinal))
+			{
+				var name = Path.GetFileNameWithoutExtension(mmlPath);
+				var mml = new Mml(mmlPath, configPath, loadFontsFromStaticFiles: false);
+				var tex = MmlGoldenTestUtil.NormalizeNewlines(mml.MakeLatex().TrimEnd());
+				File.WriteAllText(Path.Combine(goldenDir, name + ".tex"), tex + "\n");
 			}
 		}
 
