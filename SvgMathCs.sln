@@ -1,16 +1,17 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgMathTest", "SvgMathTest\SvgMathTest.csproj", "{CB50450A-E04F-4DDF-8D52-34D01B016F17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgMathTest", "test\SvgMathTest\SvgMathTest.csproj", "{CB50450A-E04F-4DDF-8D52-34D01B016F17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgMath", "SvgMath\SvgMath.csproj", "{379105F1-0F48-4033-AF79-49DD576A629F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgMath", "src\SvgMath\SvgMath.csproj", "{379105F1-0F48-4033-AF79-49DD576A629F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F9C554F-C0F4-4A7A-9223-0D72DE5B4494}"
 	ProjectSection(SolutionItems) = preProject
-		SvgMath\LICENSE.txt = SvgMath\LICENSE.txt
+		src\SvgMath\LICENSE.txt = src\SvgMath\LICENSE.txt
 		README.md = README.md
+		releasenotes.md = releasenotes.md
 	EndProjectSection
 EndProject
 Global

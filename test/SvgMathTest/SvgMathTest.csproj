@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -107,7 +107,9 @@
     <None Include="test27.mml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="test28.mml" />
+    <None Include="test28.mml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="test3.mml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -131,7 +133,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SvgMath\SvgMath.csproj">
+    <ProjectReference Include="..\..\src\SvgMath\SvgMath.csproj">
       <Project>{379105f1-0f48-4033-af79-49dd576a629f}</Project>
       <Name>SvgMath</Name>
     </ProjectReference>
