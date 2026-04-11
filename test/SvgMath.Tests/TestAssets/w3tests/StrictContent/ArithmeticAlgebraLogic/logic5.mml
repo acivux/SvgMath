@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="relation1">eq</csymbol> 
+    <apply>
+      <csymbol cd="logic1">not</csymbol> 
+      <bind>
+        <csymbol cd="quant1">forall</csymbol> 
+        <bvar>
+          <ci>s</ci> 
+        </bvar> 
+        <apply>
+          <csymbol cd="logic1">implies</csymbol> 
+          <apply>
+            <csymbol cd="set1">in</csymbol> 
+            <ci>s</ci> 
+            <apply>
+              <csymbol cd="set1">suchthat</csymbol> 
+              <ci>R</ci> 
+              <bind>
+                <csymbol cd="fns1">lambda</csymbol> 
+                <bvar>
+                  <ci>s</ci> 
+                </bvar> 
+                <apply>
+                  <csymbol cd="set1">in</csymbol> 
+                  <ci>s</ci> 
+                  <ci>S</ci> 
+                </apply> 
+              </bind> 
+            </apply> 
+          </apply> 
+          <apply>
+            <csymbol cd="set1">in</csymbol> 
+            <apply>
+              <ci>f</ci> 
+              <ci>x</ci> 
+            </apply> 
+            <ci>T</ci> 
+          </apply> 
+        </apply> 
+      </bind> 
+    </apply> 
+    <bind>
+      <csymbol cd="quant1">exists</csymbol> 
+      <bvar>
+        <ci>s</ci> 
+      </bvar> 
+      <apply>
+        <csymbol cd="set1">in</csymbol> 
+        <ci>s</ci> 
+        <ci>S</ci> 
+      </apply> 
+    </bind> 
+  </apply> 
+</math>

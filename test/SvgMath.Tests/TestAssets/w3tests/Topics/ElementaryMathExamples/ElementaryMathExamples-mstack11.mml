@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">  <mstack charalign="center">
+    <msrow>
+      <mtext>a</mtext> 
+      <mtext>abc</mtext> 
+      <mtext>d</mtext> 
+    </msrow> 
+    <msrow>
+      <mtext>a</mtext> 
+      <mtext>b</mtext> 
+      <mtext>c</mtext> 
+    </msrow>   </mstack> </math>

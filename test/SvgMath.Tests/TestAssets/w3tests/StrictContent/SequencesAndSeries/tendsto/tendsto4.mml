@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <semantics>
+      <ci>tendsto</ci> 
+      <annotation-xml encoding="MathML-Content">
+        <tendsto></tendsto> 
+      </annotation-xml> 
+    </semantics> 
+    <apply>
+      <csymbol cd="linalg2">vector</csymbol> 
+      <ci>x</ci> 
+      <ci>y</ci> 
+    </apply> 
+    <apply>
+      <csymbol cd="linalg2">vector</csymbol> 
+      <apply>
+        <ci>f</ci> 
+        <ci>x</ci> 
+        <ci>y</ci> 
+      </apply> 
+      <apply>
+        <ci>g</ci> 
+        <ci>x</ci> 
+        <ci>y</ci> 
+      </apply> 
+    </apply> 
+  </apply> 
+</math>

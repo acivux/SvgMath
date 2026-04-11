@@ -21,7 +21,8 @@ namespace SvgMath
 		{
 			m_configFileName = configFile;
 			m_loadFontsFromStaticFiles = loadFontsFromStaticFiles;
-			m_mathDocument = XDocument.Load(mmlFile);
+			var prepared = HtmlEntityExpander.PrepareMathMlXml(mmlFile);
+			m_mathDocument = XDocument.Parse(prepared, LoadOptions.None);
 		}
 		public Mml(XElement mmlContent, string configFile = null, bool loadFontsFromStaticFiles = false)
 		{

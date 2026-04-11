@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" dir="rtl">
+  <mrow>
+    <mfrac>
+      <mrow>
+        <mn>١</mn> 
+      </mrow> 
+      <mrow>
+        <mn>٣</mn> 
+      </mrow> 
+    </mfrac> 
+    <mfrac>
+      <mrow>
+        <mn>١</mn> 
+      </mrow> 
+      <mrow>
+        <mn>٣</mn> 
+      </mrow> 
+    </mfrac> 
+    <mn>٧</mn> 
+    <mo>×</mo> 
+    <mfrac>
+      <mrow>
+        <mn>٣</mn> 
+      </mrow> 
+      <mrow>
+        <mn>٤</mn> 
+      </mrow> 
+    </mfrac> 
+    <mn>٢</mn>     <mo>=</mo> 
+    <mfrac>
+      <mrow>
+        <mn>١٢١</mn> 
+      </mrow> 
+      <mrow>
+        <mn>٦</mn> 
+      </mrow> 
+    </mfrac> 
+    <mo>=</mo> 
+    <mfrac>
+      <mrow>
+        <mn>١</mn> 
+      </mrow> 
+      <mrow>
+        <mn>٦</mn> 
+      </mrow> 
+    </mfrac> 
+    <mn>٢٠</mn> 
+  </mrow> </math>

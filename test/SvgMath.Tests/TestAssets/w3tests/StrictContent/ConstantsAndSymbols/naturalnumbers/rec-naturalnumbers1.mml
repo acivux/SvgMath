@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="set1">in</csymbol> 
+    <semantics>
+      <cn>1729</cn> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>integer</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <csymbol cd="setname1">N</csymbol> 
+  </apply> 
+</math>

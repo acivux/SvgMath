@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="s_dist1">moment</csymbol> 
+    <cn>3</cn> 
+    <semantics>
+      <cn>0</cn> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>integer</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <ci>X</ci> 
+  </apply> 
+</math>

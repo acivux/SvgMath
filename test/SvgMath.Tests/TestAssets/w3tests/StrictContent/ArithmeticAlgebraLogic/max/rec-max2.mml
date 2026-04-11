@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="minmax1">max</csymbol> 
+    <apply>
+      <csymbol cd="set1">suchthat</csymbol> 
+      <ci>R</ci> 
+      <bind>
+        <csymbol cd="fns1">lambda</csymbol> 
+        <bvar>
+          <ci>x</ci> 
+        </bvar> 
+        <apply>
+          <csymbol cd="logic1">and</csymbol> 
+          <apply>
+            <csymbol cd="set1">in</csymbol> 
+            <ci>x</ci> 
+            <semantics>
+              <ci>B</ci> 
+              <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+                <ci>set</ci> 
+              </annotation-xml> 
+            </semantics> 
+          </apply> 
+          <apply>
+            <csymbol cd="set1">notin</csymbol> 
+            <ci>x</ci> 
+            <semantics>
+              <ci>C</ci> 
+              <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+                <ci>set</ci> 
+              </annotation-xml> 
+            </semantics> 
+          </apply> 
+        </apply> 
+      </bind> 
+    </apply> 
+  </apply> 
+</math>

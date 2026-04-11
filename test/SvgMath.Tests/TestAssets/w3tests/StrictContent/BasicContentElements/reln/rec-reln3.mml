@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="fns2">predicate_on_list</csymbol> 
+    <csymbol cd="relation1">lt</csymbol> 
+    <apply>
+      <csymbol cd="list1">list</csymbol> 
+      <ci>a</ci> 
+      <ci>b</ci> 
+      <ci>c</ci> 
+      <cn>10</cn> 
+    </apply> 
+  </apply> 
+</math>

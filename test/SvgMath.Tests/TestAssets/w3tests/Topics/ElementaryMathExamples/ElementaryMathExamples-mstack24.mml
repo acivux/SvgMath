@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle fontsize="32pt">
+    <mo>-</mo> 
+    <mfrac>
+      <mn>1</mn> 
+      <mrow>
+        <msup>
+          <mi>x</mi> 
+          <msup>
+            <mi>x</mi> 
+            <msup>
+              <mi>x</mi> 
+              <mn>3</mn> 
+            </msup> 
+          </msup> 
+        </msup> 
+      </mrow> 
+    </mfrac> 
+  </mstyle> 
+  <mstack align="axis -2">
+    <msline></msline> 
+    <mn>010</mn> 
+    <msline></msline> 
+    <mn>111</mn> 
+    <msline></msline> 
+  </mstack> 
+  <mi>zzzzz</mi> </math>

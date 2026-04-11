@@ -21,4 +21,19 @@
   <mathvariant name="bold" family="Arial" weight="bold"/>
   <mathvariant name="italic" family="Arial" style="italic"/>
   <mathvariant name="bold-italic" family="Arial" weight="bold" style="italic"/>
+  <!-- MathML 3 variants: fallback to Arial so W3C inputs render (glyphs may not match reference fonts). -->
+  <mathvariant name="double-struck" family="Arial"/>
+  <mathvariant name="sans-serif" family="Arial"/>
+  <mathvariant name="bold-sans-serif" family="Arial" weight="bold"/>
+  <mathvariant name="sans-serif-italic" family="Arial" style="italic"/>
+  <mathvariant name="sans-serif-bold-italic" family="Arial" weight="bold" style="italic"/>
+  <mathvariant name="monospace" family="Courier New"/>
+  <mathvariant name="script" family="Arial" style="italic"/>
+  <mathvariant name="bold-script" family="Arial" weight="bold" style="italic"/>
+  <mathvariant name="fraktur" family="Arial"/>
+  <mathvariant name="bold-fraktur" family="Arial" weight="bold"/>
+  <mathvariant name="initial" family="Arial"/>
+  <mathvariant name="tailed" family="Arial"/>
+  <mathvariant name="looped" family="Arial"/>
+  <mathvariant name="stretched" family="Arial"/>
 </config>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="relation1">eq</csymbol> 
+    <apply>
+      <csymbol cd="linalg1">scalarproduct</csymbol> 
+      <semantics>
+        <ci>A</ci> 
+        <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+          <ci>vector</ci> 
+        </annotation-xml> 
+      </semantics> 
+      <semantics>
+        <ci>B</ci> 
+        <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+          <ci>vector</ci> 
+        </annotation-xml> 
+      </semantics> 
+    </apply> 
+    <apply>
+      <csymbol cd="arith1">times</csymbol> 
+      <ci>a</ci> 
+      <ci>b</ci> 
+      <apply>
+        <csymbol cd="transc1">cos</csymbol> 
+        <ci>θ</ci> 
+      </apply> 
+    </apply> 
+  </apply> 
+</math>

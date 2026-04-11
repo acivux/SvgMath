@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <ci>f</ci> 
+    <apply id="share-t1">
+      <ci>f</ci> 
+      <apply id="share-t11">
+        <ci>f</ci> 
+        <ci>a</ci> 
+        <ci>a</ci> 
+      </apply> 
+      <share href="#share-t11"></share> 
+    </apply> 
+    <share href="#share-t1"></share> 
+  </apply> 
+</math>

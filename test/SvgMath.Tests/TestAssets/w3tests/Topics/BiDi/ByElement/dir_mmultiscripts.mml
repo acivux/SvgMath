@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">  <mtable columnlines="solid" rowlines="solid" frame="solid" columnalign="center">
+    <mtr>
+      <mtd>
+        <mtext>Test</mtext>
+      </mtd> 
+      <mtd>
+        <mtext style="width:40%">Without dir</mtext>
+      </mtd> 
+      <mtd>
+        <mtext style="width:40%">With dir=rtl</mtext>
+      </mtd> 
+    </mtr> 
+    <mtr>
+      <mtd>
+        <mtext>mmultiscripts</mtext>
+      </mtd> 
+      <mtd>
+        <mmultiscripts>
+          <mi>g</mi> 
+          <mi>h</mi> 
+          <mi>i</mi> 
+          <mi>j</mi> 
+          <mi>k</mi> 
+          <mi>l</mi> 
+          <mi>m</mi> 
+          <mprescripts></mprescripts> 
+          <mi>a</mi> 
+          <mi>b</mi> 
+          <mi>c</mi> 
+          <mi>d</mi> 
+          <mi>e</mi> 
+          <mi>f</mi> 
+        </mmultiscripts> 
+      </mtd> 
+      <mtd>
+        <mstyle dir="rtl">
+          <mmultiscripts>
+            <mi>g</mi> 
+            <mi>h</mi> 
+            <mi>i</mi> 
+            <mi>j</mi> 
+            <mi>k</mi> 
+            <mi>l</mi> 
+            <mi>m</mi> 
+            <mprescripts></mprescripts> 
+            <mi>a</mi> 
+            <mi>b</mi> 
+            <mi>c</mi> 
+            <mi>d</mi> 
+            <mi>e</mi> 
+            <mi>f</mi> 
+          </mmultiscripts> 
+        </mstyle>
+      </mtd> 
+    </mtr>   </mtable> 
+</math>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" decimalpoint=",">  <mlongdiv longdivstyle=":right=right">
+    <mn>3</mn> 
+    <mn>435,3</mn> 
+    <mn>1306</mn> 
+    <msgroup position="2" shift="-1">
+      <msgroup>
+        <mn>12</mn> 
+        <msline length="2"></msline> 
+      </msgroup> 
+      <msgroup>
+        <mn>10</mn> 
+        <mn>9</mn> 
+        <msline length="2"></msline> 
+      </msgroup> 
+      <msgroup>
+        <mn>16</mn> 
+        <mn>15</mn> 
+        <msline length="2"></msline> 
+        <mn>1,0</mn>  
+      </msgroup> 
+      <msgroup position="-1"> 
+        <mn>9</mn> 
+        <msline length="3"></msline> 
+        <mn>1</mn> 
+      </msgroup> 
+    </msgroup>   </mlongdiv> </math>

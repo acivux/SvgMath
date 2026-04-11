@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">  <mstack>
+    <msgroup>
+      <mn>14</mn> 
+      <msrow>
+        <mo>×</mo>
+        <mn>23</mn>
+      </msrow> 
+    </msgroup> 
+    <msline></msline> 
+    <msgroup>
+      <mn>42</mn> 
+      <mn>280</mn> 
+    </msgroup> 
+    <msline></msline> 
+    <msgroup>
+      <mn>322</mn> 
+    </msgroup>   </mstack> </math>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <apply>
+      <csymbol cd="calculus1">partialdiffdegree</csymbol> 
+      <apply>
+        <csymbol cd="list1">list</csymbol> 
+        <ci>m</ci> 
+        <ci>n</ci> 
+      </apply> 
+      <ci>k</ci> 
+      <bind>
+        <csymbol cd="fns1">lambda</csymbol> 
+        <bvar>
+          <ci>x</ci> 
+        </bvar> 
+        <bvar>
+          <ci>y</ci> 
+        </bvar> 
+        <apply>
+          <semantics>
+            <ci>f</ci> 
+            <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+              <ci>fn</ci> 
+            </annotation-xml> 
+          </semantics> 
+          <ci>x</ci> 
+          <ci>y</ci> 
+        </apply> 
+      </bind> 
+    </apply> 
+    <ci>x</ci> 
+    <ci>y</ci> 
+  </apply> 
+</math>

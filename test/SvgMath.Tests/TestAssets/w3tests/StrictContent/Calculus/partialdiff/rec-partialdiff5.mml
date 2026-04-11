@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <partialdiff></partialdiff> 
+    <apply>
+      <csymbol cd="list1">list</csymbol> 
+      <cn>1</cn> 
+      <cn>1</cn> 
+      <cn>3</cn> 
+    </apply> 
+    <semantics>
+      <ci>f</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>fn</ci> 
+      </annotation-xml> 
+    </semantics> 
+  </apply> 
+</math>

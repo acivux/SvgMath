@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">  <mstack>
+    <mscarries>
+      <mn>1</mn>
+      <mn>1</mn>
+      <none></none>
+    </mscarries> 
+    <mscarries>
+      <mn>1</mn>
+      <mn>1</mn>
+      <none></none>
+    </mscarries> 
+    <mn>1,234</mn> 
+    <msrow>
+      <mo>×</mo>
+      <mn>4,321</mn>
+    </msrow> 
+    <msline></msline> 
+    <mscarries position="2">
+      <mn>1</mn> 
+      <none></none> 
+      <mn>1</mn> 
+      <mn>1</mn> 
+      <mn>1</mn> 
+      <none></none> 
+      <mn>1</mn> 
+    </mscarries> 
+    <msgroup shift="1">
+      <mn>1,234</mn> 
+      <mn>24,68</mn> 
+      <mn>370,2</mn> 
+      <msrow position="1">
+        <mn>4,936</mn> 
+      </msrow> 
+    </msgroup> 
+    <msline></msline> 
+    <mn>5,332,114</mn>   </mstack> </math>

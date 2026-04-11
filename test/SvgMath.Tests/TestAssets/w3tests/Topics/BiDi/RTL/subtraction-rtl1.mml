@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" dir="rtl">  <mstack charspacing="loose">
+    <mscarries position="2" crossout="updiagonalstrike">
+      <mn>٢</mn> 
+      <mn>١٢</mn> 
+    </mscarries> 
+    <mn>٣٢٣٥</mn> 
+    <msrow>
+      <mn>١٧١٤</mn> 
+      <mo>-</mo> 
+    </msrow> 
+    <msline></msline> 
+    <mn>١٥٢١</mn>   </mstack> </math>

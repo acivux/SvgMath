@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <bind>
+    <csymbol cd="quant1">forall</csymbol> 
+    <bvar>
+      <ci>n</ci> 
+    </bvar> 
+    <apply>
+      <csymbol cd="logic1">implies</csymbol> 
+      <apply>
+        <csymbol cd="set1">in</csymbol> 
+        <ci>n</ci> 
+        <apply>
+          <csymbol cd="set1">suchthat</csymbol> 
+          <ci>R</ci> 
+          <bind>
+            <csymbol cd="fns1">lambda</csymbol> 
+            <bvar>
+              <ci>n</ci> 
+            </bvar> 
+            <apply>
+              <csymbol cd="logic1">and</csymbol> 
+              <apply>
+                <csymbol cd="relation1">gt</csymbol> 
+                <ci>n</ci> 
+                <cn>0</cn> 
+              </apply> 
+              <apply>
+                <csymbol cd="set1">in</csymbol> 
+                <ci>n</ci> 
+                <csymbol cd="setname1">Z</csymbol> 
+              </apply> 
+            </apply> 
+          </bind> 
+        </apply> 
+      </apply> 
+      <bind>
+        <csymbol cd="quant1">exists</csymbol> 
+        <bvar>
+          <ci>x</ci> 
+        </bvar> 
+        <bvar>
+          <ci>y</ci> 
+        </bvar> 
+        <bvar>
+          <ci>z</ci> 
+        </bvar> 
+        <apply>
+          <csymbol cd="logic1">and</csymbol> 
+          <apply>
+            <csymbol cd="set1">in</csymbol> 
+            <ci>x</ci> 
+            <ci>y</ci> 
+            <ci>z</ci> 
+            <apply>
+              <csymbol cd="set1">suchthat</csymbol> 
+              <ci>R</ci> 
+              <bind>
+                <csymbol cd="fns1">lambda</csymbol> 
+                <bvar>
+                  <ci>x</ci> 
+                </bvar> 
+                <bvar>
+                  <ci>y</ci> 
+                </bvar> 
+                <bvar>
+                  <ci>z</ci> 
+                </bvar> 
+                <apply>
+                  <csymbol cd="logic1">and</csymbol> 
+                  <apply>
+                    <csymbol cd="set1">in</csymbol> 
+                    <ci>x</ci> 
+                    <csymbol cd="setname1">Z</csymbol> 
+                  </apply> 
+                  <apply>
+                    <csymbol cd="set1">in</csymbol> 
+                    <ci>y</ci> 
+                    <csymbol cd="setname1">Z</csymbol> 
+                  </apply> 
+                  <apply>
+                    <csymbol cd="set1">in</csymbol> 
+                    <ci>z</ci> 
+                    <csymbol cd="setname1">Z</csymbol> 
+                  </apply> 
+                </apply> 
+              </bind> 
+            </apply> 
+          </apply> 
+          <apply>
+            <csymbol cd="relation1">eq</csymbol> 
+            <apply>
+              <csymbol cd="arith1">plus</csymbol> 
+              <apply>
+                <csymbol cd="arith1">power</csymbol> 
+                <ci>x</ci> 
+                <ci>n</ci> 
+              </apply> 
+              <apply>
+                <csymbol cd="arith1">power</csymbol> 
+                <ci>y</ci> 
+                <ci>n</ci> 
+              </apply> 
+            </apply> 
+            <apply>
+              <csymbol cd="arith1">power</csymbol> 
+              <ci>z</ci> 
+              <ci>n</ci> 
+            </apply> 
+          </apply> 
+        </apply> 
+      </bind> 
+    </apply> 
+  </bind> 
+</math>

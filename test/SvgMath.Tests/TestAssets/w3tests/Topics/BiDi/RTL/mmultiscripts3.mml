@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" dir="rtl">
+  <mmultiscripts>
+    <mo>ل</mo> 
+    <mn>٣</mn> 
+    <none></none> 
+    <mprescripts></mprescripts> 
+    <none></none> 
+    <mn>٥</mn> 
+  </mmultiscripts> 
+  <mrow>
+    <mo>=</mo> 
+    <mn>٥</mn> 
+    <mo>×</mo> 
+    <mn>٤</mn> 
+    <mo>×</mo> 
+    <mn>٣</mn> 
+  </mrow> 
+</math>

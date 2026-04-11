@@ -513,7 +513,8 @@ namespace SvgMath
         public static void DrawBox(MathNode node, XElement output, double? borderWidth = null, string borderColor = null, double borderRadius = 0)
         {
             string background = GetBackGround(node);
-            if (background == "none" && (borderWidth == null || borderWidth == 0))
+            double bw = borderWidth ?? 0;
+            if (background == "none" && bw == 0)
                 return;
             if (borderColor == null)
                 borderColor = node.Color;
@@ -521,10 +522,10 @@ namespace SvgMath
             Dictionary<string, string> attrs = new Dictionary<string, string>();
             attrs.Add("fill", background);
             attrs.Add("stroke", "none");
-            attrs.Add("x", string.Format(CultureInfo.InvariantCulture, "{0}", (double)borderWidth / 2));
-            attrs.Add("y", string.Format(CultureInfo.InvariantCulture, "{0}", (double)borderWidth / 2 - node.Height));
-            attrs.Add("width", string.Format(CultureInfo.InvariantCulture, "{0}", node.Width - (double)borderWidth));
-            attrs.Add("height", string.Format(CultureInfo.InvariantCulture, "{0}", node.Height + node.Depth - (double)borderWidth));
+            attrs.Add("x", string.Format(CultureInfo.InvariantCulture, "{0}", bw / 2));
+            attrs.Add("y", string.Format(CultureInfo.InvariantCulture, "{0}", bw / 2 - node.Height));
+            attrs.Add("width", string.Format(CultureInfo.InvariantCulture, "{0}", node.Width - bw));
+            attrs.Add("height", string.Format(CultureInfo.InvariantCulture, "{0}", node.Height + node.Depth - bw));
 
             if (borderWidth != null && borderColor != null)
             {

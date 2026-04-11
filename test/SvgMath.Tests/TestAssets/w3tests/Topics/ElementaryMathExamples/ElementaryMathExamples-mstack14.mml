@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstack align="top 1">
+    <msline></msline> 
+    <mn>010</mn> 
+    <msline></msline> 
+    <mn>111</mn> 
+    <msline></msline> 
+  </mstack> 
+  <mi>zzzzz</mi> </math>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <bind>
+    <csymbol cd="quant1">forall</csymbol> 
+    <bvar>
+      <ci>p</ci> 
+    </bvar> 
+    <bvar>
+      <ci>q</ci> 
+    </bvar> 
+    <apply>
+      <csymbol cd="logic1">implies</csymbol> 
+      <apply>
+        <csymbol cd="set1">in</csymbol> 
+        <ci>p</ci> 
+        <ci>q</ci> 
+        <apply>
+          <csymbol cd="set1">suchthat</csymbol> 
+          <ci>R</ci> 
+          <bind>
+            <csymbol cd="fns1">lambda</csymbol> 
+            <bvar>
+              <ci>p</ci> 
+            </bvar> 
+            <bvar>
+              <ci>q</ci> 
+            </bvar> 
+            <apply>
+              <csymbol cd="logic1">and</csymbol> 
+              <apply>
+                <csymbol cd="set1">in</csymbol> 
+                <ci>p</ci> 
+                <csymbol cd="setname1">Q</csymbol> 
+              </apply> 
+              <apply>
+                <csymbol cd="set1">in</csymbol> 
+                <ci>q</ci> 
+                <csymbol cd="setname1">Q</csymbol> 
+              </apply> 
+              <apply>
+                <csymbol cd="relation1">lt</csymbol> 
+                <ci>p</ci> 
+                <ci>q</ci> 
+              </apply> 
+            </apply> 
+          </bind> 
+        </apply> 
+      </apply> 
+      <apply>
+        <csymbol cd="relation1">lt</csymbol> 
+        <ci>p</ci> 
+        <apply>
+          <csymbol cd="arith1">power</csymbol> 
+          <ci>q</ci> 
+          <cn>2</cn> 
+        </apply> 
+      </apply> 
+    </apply> 
+  </bind> 
+</math>

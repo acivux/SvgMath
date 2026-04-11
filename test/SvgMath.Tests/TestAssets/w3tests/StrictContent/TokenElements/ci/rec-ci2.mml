@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <semantics>
+    <ci>V</ci> 
+    <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+      <ci>vector</ci> 
+    </annotation-xml> 
+  </semantics> 
+</math>

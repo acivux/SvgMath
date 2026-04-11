@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="relation1">eq</csymbol> 
+    <apply>
+      <csymbol cd="logic1">or</csymbol> 
+      <csymbol cd="logic1">true</csymbol> 
+      <semantics>
+        <ci>P</ci> 
+        <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+          <ci>logical</ci> 
+        </annotation-xml> 
+      </semantics> 
+    </apply> 
+    <csymbol cd="logic1">true</csymbol> 
+  </apply> 
+</math>

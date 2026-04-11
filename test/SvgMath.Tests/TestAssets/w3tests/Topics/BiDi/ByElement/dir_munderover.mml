@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">  <mtable columnlines="solid" rowlines="solid" frame="solid" columnalign="center">
+    <mtr>
+      <mtd>
+        <mtext>Test</mtext>
+      </mtd> 
+      <mtd>
+        <mtext style="width:40%">Without dir</mtext>
+      </mtd> 
+      <mtd>
+        <mtext style="width:40%">With dir=rtl</mtext>
+      </mtd> 
+    </mtr> 
+    <mtr>
+      <mtd>
+        <mtext>munderover (mo with movablelimits=true and displaystyle=false)</mtext> 
+      </mtd> 
+      <mtd>
+        <munderover>
+          <mo movablelimits="true">A</mo> 
+          <mi>b</mi> 
+          <mi>c</mi> 
+        </munderover> 
+      </mtd> 
+      <mtd>
+        <mstyle dir="rtl">
+          <munderover>
+            <mo movablelimits="true">A</mo> 
+            <mi>b</mi> 
+            <mi>c</mi> 
+          </munderover> 
+        </mstyle>
+      </mtd> 
+    </mtr>   </mtable> 
+</math>

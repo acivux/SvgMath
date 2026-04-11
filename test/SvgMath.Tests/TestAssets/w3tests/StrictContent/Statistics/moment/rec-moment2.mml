@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="s_data1">moment</csymbol> 
+    <cn>3</cn> 
+    <csymbol cd="s_data1">mean</csymbol> 
+    <apply>
+      <csymbol cd="set1">set</csymbol> 
+      <cn>6</cn> 
+      <cn>4</cn> 
+      <cn>2</cn> 
+      <cn>2</cn> 
+      <cn>5</cn> 
+    </apply> 
+  </apply> 
+</math>

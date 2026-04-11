@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">  <mlongdiv longdivstyle="lefttop">
+    <mn>7</mn> 
+    <mn>28</mn> 
+    <msgroup>
+      <mn>201</mn> 
+      <msrow position="1">
+        <mn>14</mn>
+      </msrow> 
+    </msgroup> 
+    <msline length="2" position="1"></msline> 
+    <msgroup>
+      <mn>61</mn> 
+      <mn>56</mn> 
+      <msline length="2"></msline> 
+    </msgroup> 
+    <mtext>5</mtext>   </mlongdiv> </math>

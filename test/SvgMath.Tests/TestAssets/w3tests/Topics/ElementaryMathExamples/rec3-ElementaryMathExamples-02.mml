@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">  <mstack>
+    <mn>123</mn> 
+    <msrow>
+      <mn>456</mn> 
+      <mo>+</mo> 
+    </msrow> 
+    <msline></msline> 
+    <mn>579</mn>   </mstack> </math>

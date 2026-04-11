@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="set1">intersect</csymbol> 
+    <semantics>
+      <ci>A</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>set</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <apply>
+      <csymbol cd="set1">union</csymbol> 
+      <semantics>
+        <ci>B</ci> 
+        <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+          <ci>set</ci> 
+        </annotation-xml> 
+      </semantics> 
+      <semantics>
+        <ci>C</ci> 
+        <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+          <ci>set</ci> 
+        </annotation-xml> 
+      </semantics> 
+    </apply> 
+  </apply> 
+</math>

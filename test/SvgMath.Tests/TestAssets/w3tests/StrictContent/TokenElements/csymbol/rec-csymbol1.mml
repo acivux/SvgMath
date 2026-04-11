@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <semantics>
+      <csymbol>J0-msubmimn</csymbol> 
+      <annotation-xml encoding="MathML-Presentation">
+        <msub>
+          <mi>J</mi> 
+          <mn>0</mn> 
+        </msub> 
+      </annotation-xml> 
+    </semantics> 
+    <ci>y</ci> 
+  </apply> 
+</math>

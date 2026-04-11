@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="arith1">plus</csymbol> 
+    <semantics>
+      <ci>x</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>real</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <semantics>
+      <ci>x</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>integer</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <semantics>
+      <ci>x</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>rational</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <semantics>
+      <ci>y</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>complex-cartesian</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <semantics>
+      <ci>θ</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>complex-polar</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <semantics>
+      <ci>v</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>vector</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <semantics>
+      <ci>π</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>constant</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <ci>ⅇ</ci> 
+    <ci>ⅇ</ci> 
+    <ci>ⅈ</ci> 
+    <ci>ⅈ</ci> 
+    <ci>γ</ci> 
+    <ci>∞</ci> 
+  </apply> 
+</math>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="calculus1">defint</csymbol> 
+    <apply>
+      <csymbol cd="set1">suchthat</csymbol> 
+      <ci>R</ci> 
+      <bind>
+        <csymbol cd="fns1">lambda</csymbol> 
+        <bvar>
+          <ci>x</ci> 
+        </bvar> 
+        <apply>
+          <csymbol cd="set1">in</csymbol> 
+          <ci>x</ci> 
+          <ci>D</ci> 
+        </apply> 
+      </bind> 
+    </apply> 
+    <bind>
+      <csymbol cd="fns1">lambda</csymbol> 
+      <bvar>
+        <ci>x</ci> 
+      </bvar> 
+      <apply>
+        <semantics>
+          <ci>f</ci> 
+          <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+            <ci>fn</ci> 
+          </annotation-xml> 
+        </semantics> 
+        <ci>x</ci> 
+      </apply> 
+    </bind> 
+  </apply> 
+</math>

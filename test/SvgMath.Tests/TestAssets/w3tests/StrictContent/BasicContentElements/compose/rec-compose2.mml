@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <csymbol cd="fns1">left_compose</csymbol> 
+    <semantics>
+      <ci>f</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>fn</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <semantics>
+      <ci>g</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>fn</ci> 
+      </annotation-xml> 
+    </semantics> 
+    <semantics>
+      <ci>h</ci> 
+      <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+        <ci>fn</ci> 
+      </annotation-xml> 
+    </semantics> 
+  </apply> 
+</math>

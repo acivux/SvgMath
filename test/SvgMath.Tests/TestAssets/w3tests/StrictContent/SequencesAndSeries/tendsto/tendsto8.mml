@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <semantics>
+      <ci>tendsto</ci> 
+      <annotation-xml encoding="MathML-Content">
+        <tendsto></tendsto> 
+      </annotation-xml> 
+    </semantics> 
+    <apply>
+      <csymbol cd="arith1">power</csymbol> 
+      <ci>x</ci> 
+      <cn>2</cn> 
+    </apply> 
+    <apply>
+      <csymbol cd="arith1">power</csymbol> 
+      <ci>a</ci> 
+      <cn>2</cn> 
+    </apply> 
+  </apply> 
+</math>

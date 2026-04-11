@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">  <munder>    <mrow>      <mmultiscripts>        <mi mathvariant="normal">A</mi>         <mprescripts></mprescripts>         <mi mathvariant="normal">Y</mi>         <mi mathvariant="normal">X</mi>       </mmultiscripts>     </mrow>     <mphantom>      <mtext>fail</mtext>
+    </mphantom>   </munder>   <mo>=</mo>   <msubsup>    <mi mathvariant="normal">A</mi>     <mi mathvariant="normal">Y</mi>     <mi mathvariant="normal">X</mi>   </msubsup> </math>

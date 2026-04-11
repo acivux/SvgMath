@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">  <mtable columnlines="solid" rowlines="solid" frame="solid" columnalign="center">
+    <mtr>
+      <mtd>
+        <mtext>Test</mtext>
+      </mtd> 
+      <mtd>
+        <mtext style="width:40%">Without dir</mtext>
+      </mtd> 
+      <mtd>
+        <mtext style="width:40%">With dir=rtl</mtext>
+      </mtd> 
+    </mtr> 
+    <mtr>
+      <mtd>
+        <mtext>mpadded (lspace=1cm width=3cm)</mtext>
+      </mtd> 
+      <mtd>
+        <mi>A</mi> 
+        <mpadded lspace="1cm" width="3cm">
+          <mi>a</mi> 
+          <mi>b</mi> 
+          <mi>c</mi> 
+          <mi>d</mi> 
+          <mi>e</mi> 
+        </mpadded> 
+        <mi>B</mi> 
+      </mtd> 
+      <mtd>
+        <mstyle dir="rtl">
+          <mi>A</mi> 
+          <mpadded lspace="1cm" width="3cm">
+            <mi>a</mi> 
+            <mi>b</mi> 
+            <mi>c</mi> 
+            <mi>d</mi> 
+            <mi>e</mi> 
+          </mpadded> 
+          <mi>B</mi> 
+        </mstyle>
+      </mtd> 
+    </mtr>   </mtable> 
+</math>

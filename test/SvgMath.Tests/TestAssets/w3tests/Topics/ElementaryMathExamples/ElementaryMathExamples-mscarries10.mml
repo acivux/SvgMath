@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">  <mstack charspacing="loose">
+    <mscarries crossout="updiagonalstrike" location="se">
+      <mn>2</mn> 
+      <mn>12</mn> 
+      <mscarry crossout="none">
+        <none></none> 
+      </mscarry> 
+    </mscarries> 
+    <mn>2,327</mn> 
+    <msrow>
+      <mo>-</mo> 
+      <mn>1,156</mn> 
+    </msrow> 
+    <msline></msline> 
+    <mn>1,171</mn>   </mstack> </math>
