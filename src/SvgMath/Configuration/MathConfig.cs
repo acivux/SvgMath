@@ -13,7 +13,8 @@ namespace SvgMath
 		
 		public MathConfig(string configFile, bool loadFontsFromStaticFiles = false)
 		{
-			
+			Defaults = new Dictionary<string, string>(MathDefaults.globalDefaults);
+
 			if (configFile == null)
 			{
 				DirectoryInfo configFolder = new DirectoryInfo(Path.Combine(Directory.GetCurrentDirectory(), "configuration"));
@@ -23,10 +24,15 @@ namespace SvgMath
 
 				configFile = configFileInfo.FullName;
 			}
-			
+
 			m_configDoc = XDocument.Load(configFile);
 
-			m_verbose = bool.Parse(m_configDoc.Element("config").Attributes().FirstOrDefault(x => x.Name == "verbose").Value);
+			XElement configElement = m_configDoc.Element("config");
+			if (configElement == null)
+				throw new InvalidOperationException("Configuration file must contain a root <config> element.");
+
+			XAttribute verboseAttr = configElement.Attributes().FirstOrDefault(x => x.Name == "verbose");
+			m_verbose = verboseAttr != null && bool.Parse(verboseAttr.Value);
 			m_configDoc.Descendants("defaults").ToList().ForEach(elem => SetDefaults(elem));
 			m_configDoc.Descendants("fallback").ToList().ForEach(elem => SetFallBackFamilies(elem));
             m_configDoc.Descendants("mathvariant").ToList().ForEach(elem => SetMathVariant(elem));
@@ -42,7 +48,10 @@ namespace SvgMath
 		}
 		void SetFallBackFamilies(XElement fallbackElement)
 		{
-			FallbackFamilies.AddRange(fallbackElement.Attribute("family").Value.Split(',').Select(x => x.Trim()).ToList());
+			XAttribute familyAttr = fallbackElement.Attribute("family");
+			if (familyAttr == null || string.IsNullOrWhiteSpace(familyAttr.Value))
+				throw new InvalidOperationException("Configuration element <fallback> must have a non-empty 'family' attribute.");
+			FallbackFamilies.AddRange(familyAttr.Value.Split(',').Select(x => x.Trim()).ToList());
 		}
 		void SetFontFamiliesFromStaticFiles()
 		{
@@ -103,7 +112,10 @@ namespace SvgMath
 			string weight = mathVariant.Attributes("weight").FirstOrDefault() != null ? mathVariant.Attribute("weight").Value : "normal";
 			string style = mathVariant.Attributes("style").FirstOrDefault() != null ? mathVariant.Attribute("style").Value : "normal";
 			MathVariant mv = new MathVariant(name, weight, style);
-			mathVariant.Attribute("family").Value.Split(',').Select(x => x.Trim()).ToList().ForEach(x=> mv.AddFamily(x));
+			XAttribute familyAttr = mathVariant.Attribute("family");
+			if (familyAttr == null || string.IsNullOrWhiteSpace(familyAttr.Value))
+				throw new InvalidOperationException("Configuration element <mathvariant> must have a non-empty 'family' attribute.");
+			familyAttr.Value.Split(',').Select(x => x.Trim()).ToList().ForEach(x=> mv.AddFamily(x));
 			Variants.Add(name, mv);
 		}
 		void SetOperatorStyle(XElement opElement)
@@ -137,7 +149,9 @@ namespace SvgMath
 
 
 		public List<string> FallbackFamilies = new List<string>();
-		public Dictionary<string, string> Defaults = MathDefaults.globalDefaults;
+		public Dictionary<string, string> Defaults { get; private set; }
+
+		public bool Verbose => m_verbose;
 		public Dictionary<string, MathVariant> Variants = new Dictionary<string, MathVariant>();
 		public List<OperatorStyle> OperatorStyles = new List<OperatorStyle>();
 		public MathOperators MathOperators = new MathOperators();

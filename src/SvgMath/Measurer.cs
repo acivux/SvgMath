@@ -129,7 +129,9 @@ namespace SvgMath
             string selectionattr = "1";
             if (m_node.Attributes.ContainsKey("selection"))
                 selectionattr = m_node.Attributes["selection"];
-            int selection = int.Parse(selectionattr);
+            int selection;
+            if (!int.TryParse(selectionattr, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out selection))
+                throw new InvalidOperationException(string.Format("Invalid value '{0}' for 'selection' attribute on maction - must be a positive integer", selectionattr));
             m_node.Base = null;
             if (selection <= 0)
             {

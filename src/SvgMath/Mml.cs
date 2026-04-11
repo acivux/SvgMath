@@ -9,20 +9,22 @@ namespace SvgMath
 	 */
 	public class Mml
 	{
-		public Mml(string mmlFile, string configFile = null)
+		public Mml(string mmlFile, string configFile = null, bool loadFontsFromStaticFiles = false)
 		{
 			m_configFileName = configFile;
+			m_loadFontsFromStaticFiles = loadFontsFromStaticFiles;
 			m_mathDocument = XDocument.Load(mmlFile);
 		}
-		public Mml(XElement mmlContent, string configFile = null)
+		public Mml(XElement mmlContent, string configFile = null, bool loadFontsFromStaticFiles = false)
 		{
 			m_configFileName = configFile;
+			m_loadFontsFromStaticFiles = loadFontsFromStaticFiles;
 			m_mathDocument = new XDocument(mmlContent);
 		}
 
 		public XElement MakeSvg()
 		{
-			m_mathConfig = new MathConfig(m_configFileName);
+			m_mathConfig = new MathConfig(m_configFileName, m_loadFontsFromStaticFiles);
 			MathNode currentNode = new MathNode(
 				m_mathDocument.Root.Name.LocalName,
 				m_mathDocument.Root.Attributes().ToDictionary(kvp => kvp.Name.ToString(), kvp => kvp.Value),
@@ -54,6 +56,7 @@ namespace SvgMath
 
 
 		readonly string m_configFileName;
+		readonly bool m_loadFontsFromStaticFiles;
 		readonly XDocument m_mathDocument;
 		MathConfig m_mathConfig;
 	}

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config verbose="true">
+  <fallback family="Arial"/>
+  <defaults mathsize="20pt"
+            scriptlevel="0"
+            scriptsizemultiplier="0.71"
+            scriptminsize="8pt"
+            displaystyle="false"
+            mathcolor="black"
+            veryverythinmathspace="0.0555556em"
+            verythinmathspace="0.111111em"
+            thinmathspace="0.166667em"
+            mediummathspace="0.222222em"
+            thickmathspace="0.277778em"
+            verythickmathspace="0.333333em"
+            veryverythickmathspace="0.388889em"
+            rowspacing="1.0ex"
+            columnspacing="0.8em"
+            framespacing="0.4em 0.5ex"/>
+  <mathvariant name="normal" family="Arial"/>
+  <mathvariant name="bold" family="Arial" weight="bold"/>
+  <mathvariant name="italic" family="Arial" style="italic"/>
+  <mathvariant name="bold-italic" family="Arial" weight="bold" style="italic"/>
+</config>

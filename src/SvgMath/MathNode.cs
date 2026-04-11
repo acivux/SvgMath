@@ -26,7 +26,7 @@ namespace SvgMath
             }
             else
             {
-                NodeDefaults = MathDefaults.globalDefaults;
+                NodeDefaults = new Dictionary<string, string>(MathDefaults.globalDefaults);
                 Config.Defaults.Keys.ToList().ForEach(x => NodeDefaults[x] = Config.Defaults[x]);
                 NodeIndex = 0;
             }
@@ -108,7 +108,7 @@ namespace SvgMath
         public XElement MakeImage()
         {
 			if (ElementName != "math")
-				Console.WriteLine("Root element in MathML document must be 'math'");
+				throw new InvalidOperationException("Root element in MathML document must be 'math'.");
 			
 			Measure();
             return Generator.DrawImage(this);
@@ -223,12 +223,9 @@ namespace SvgMath
                 {
                     spaceattr = spaceattr.Substring(8);
                 }
-                string realspaceattr = "0em";
-                if (NodeDefaults.ContainsKey(spaceattr))
-                {
-                    realspaceattr = NodeDefaults[spaceattr]; 
-                    //throw new InvalidOperationException(string.Format("Bad space token: '{0}'", spaceattr));
-                }
+                if (!NodeDefaults.ContainsKey(spaceattr))
+                    throw new InvalidOperationException(string.Format("Unknown mathspace token: '{0}'", spaceattr));
+                string realspaceattr = NodeDefaults[spaceattr];
                 return ParseLength(realspaceattr, unitlessScale);
             }
             return ParseLength(spaceattr, unitlessScale);
@@ -306,19 +303,21 @@ namespace SvgMath
             if (MetricList == null)
             {
                 MetricList = FillMetricList(FontFamilies);
-				if (MetricList == null)
-				{
-					FontFamilies = Config.FallbackFamilies;
-					MetricList = FillMetricList(FontFamilies);
-				}
+                if (MetricList.Count == 0 && Config.FallbackFamilies != null && Config.FallbackFamilies.Count > 0)
+                {
+                    FontFamilies = new List<string>(Config.FallbackFamilies);
+                    MetricList = FillMetricList(FontFamilies);
+                }
             }
-            if (MetricList == null)
+            if (MetricList == null || MetricList.Count == 0)
                 throw new InvalidOperationException("Fatal error: cannot find any font metric for the node; fallback font families misconfiguration");
             return MetricList;
         }
         private List<FontMetricRecord> FillMetricList(List<string> familyList)
         {
             List<FontMetricRecord> metricList = new List<FontMetricRecord>();
+            if (familyList == null)
+                return metricList;
             foreach (string family in familyList)
             {
                 GenericFontMetric metric = Config.FindFont(FontWeight, FontStyle, family);
@@ -327,9 +326,6 @@ namespace SvgMath
                     metricList.Add(new FontMetricRecord(family, metric));
                 }
             }
-            //Todo: match python implementation
-            if (metricList.Count == 0)
-                throw new InvalidOperationException(string.Format("Cannot find any font metric for family {0}", string.Join(", ",familyList)));
             return metricList;
         }
         public void ProcessFontAttributes()
@@ -472,11 +468,20 @@ namespace SvgMath
 		{
 			if (value == null)
 				value = GetProperty(attr);
-			List<string> splitvalue = value.Split(null).ToList();
+			if (string.IsNullOrEmpty(value))
+			{
+				if (NodeDefaults != null && NodeDefaults.ContainsKey(attr))
+					value = NodeDefaults[attr];
+				else
+					return new List<string>();
+			}
+			char[] ws = null;
+			List<string> splitvalue = value.Split(ws, StringSplitOptions.RemoveEmptyEntries).ToList();
 			if (splitvalue.Count > 0)
 				return splitvalue;
-			//ToDo: self.error("Bad value for '%s' attribute: empty list" % attr)
-			return NodeDefaults[attr].Split(null).ToList();
+			if (NodeDefaults != null && NodeDefaults.ContainsKey(attr))
+				return NodeDefaults[attr].Split(ws, StringSplitOptions.RemoveEmptyEntries).ToList();
+			return new List<string>();
 		}
 		public bool HasGlyph(int ch)
         {

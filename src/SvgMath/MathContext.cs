@@ -122,7 +122,7 @@ namespace SvgMath
 		{
 			// If the identifier is a single character, make it italic by default.
 			// Don't forget surrogate pairs here!
-			if (node.Text.Length == 1 || (node.Text.Length == 2 && char.IsHighSurrogate(node.Text[0]) && char.IsHighSurrogate(node.Text[1])))
+			if (node.Text.Length == 1 || (node.Text.Length == 2 && char.IsHighSurrogate(node.Text[0]) && char.IsLowSurrogate(node.Text[1])))
 			{
 				node.Attributes["fontstyle"] = "italic";
 			}
