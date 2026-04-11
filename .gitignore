@@ -222,3 +222,6 @@ $RECYCLE.BIN/
 
 # BenchmarkDotNet (run from repo root or benchmark project)
 BenchmarkDotNet.Artifacts/
+
+# Cursor IDE (local plans, state — do not commit)
+.cursor/
