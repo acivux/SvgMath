@@ -67,8 +67,36 @@ namespace SvgMath
 		void ParseMML(XElement root, MathNode parentNode, int depth)
 		{
 			int recDepth = depth + 1;
-			foreach (XElement element in root.Elements().Where(IsMathMLElement))
+			foreach (XElement element in root.Elements().Where(IsMathMLElement).Where(e => !IsTableAlignmentAuxiliary(e)))
 				AddMathSubtree(element, parentNode, recDepth);
+		}
+
+		static bool IsTableAlignmentAuxiliary(XElement e)
+		{
+			var n = e.Name.LocalName;
+			return n == "malignmark" || n == "maligngroup";
+		}
+
+		/// <summary>First child of <c>semantics</c> is Content MathML — not rendered by this engine.</summary>
+		internal static bool IsUnsupportedContentMathRoot(XElement e)
+		{
+			if (!IsMathMLElement(e))
+				return false;
+			switch (e.Name.LocalName)
+			{
+				case "apply":
+				case "bind":
+				case "csymbol":
+				case "cn":
+				case "ci":
+				case "cerror":
+				case "cs":
+				case "share":
+				case "cbytes":
+					return true;
+				default:
+					return false;
+			}
 		}
 
 		/// <summary>Elementary math <c>mstack</c> is lowered to <c>mtable</c> (rows as <c>mtr</c>/<c>mtd</c>) for layout.</summary>
@@ -132,7 +160,12 @@ namespace SvgMath
 			{
 				var first = FirstSemanticsExpressionChild(element);
 				if (first != null)
+				{
+					if (IsUnsupportedContentMathRoot(first))
+						throw new System.InvalidOperationException(
+							"Content MathML is not supported for layout; use presentation MathML as the first child of semantics.");
 					AddMathSubtree(first, parentNode, recDepth);
+				}
 				return;
 			}
 
