@@ -1,1 +1,1 @@
-This folder contains the original SVGMath 0.3.3 Python release, kept for porting reference and diffs. It is not part of the C# build.
+This folder contains the original SVGMath 0.3.3 Python release, kept for porting reference and diffs. It is not part of the C# build. It is distributed under the MIT License; see SVGMath-0.3.3/LICENSE.txt.

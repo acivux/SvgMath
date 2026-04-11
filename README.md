@@ -8,6 +8,11 @@ C# (minimal effort)port if the Python SvgMath utility found at http://sourceforg
 Version history: [`releasenotes.md`](releasenotes.md).
 
 ### License
-All credit goes to the original creator Nikolai Grigoriev <svgmath@grigoriev.ru>
 
-SVGMath is released under MIT open-source license. See [`src/SvgMath/LICENSE.txt`](src/SvgMath/LICENSE.txt) for full licensing info.
+This repository is under the [MIT License](LICENSE). The same text is copied at [`src/SvgMath/LICENSE.txt`](src/SvgMath/LICENSE.txt) for builds that ship that file next to the library.
+
+**Upstream:** SVGMath was created by Nikolai Grigoriev (<svgmath@grigoriev.ru>). The original software is Copyright (c) 2005 Nikolai Grigoriev and licensed under the MIT License.
+
+**C# port:** The C# port and tooling in this repository are a derivative work offered under the same MIT terms. Copyright for the port is held by the SvgMath C# port contributors (see copyright lines in [LICENSE](LICENSE)).
+
+Third-party and reference details are summarized in [NOTICE.md](NOTICE.md).

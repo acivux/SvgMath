@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgMath", "src\SvgMath\SvgM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F9C554F-C0F4-4A7A-9223-0D72DE5B4494}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		NOTICE.md = NOTICE.md
 		src\SvgMath\LICENSE.txt = src\SvgMath\LICENSE.txt
 		README.md = README.md
 		releasenotes.md = releasenotes.md
