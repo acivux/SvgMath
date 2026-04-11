@@ -8,6 +8,8 @@ C# (minimal effort) port of the Python SvgMath utility at http://sourceforge.net
 
 **Build:** Install a [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0), then run `dotnet build SvgMathCs.sln` from the repository root.
 
+**Benchmarks:** [`benchmarks/SvgMath.Benchmarks`](benchmarks/SvgMath.Benchmarks) (BenchmarkDotNet) measures `Mml.MakeSvg` on representative inputs; see that folder’s README for commands and for optional wall-clock timing of `dotnet test`.
+
 Version history: [`releasenotes.md`](releasenotes.md).
 
 ### License

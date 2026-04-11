@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>SvgMath.Benchmarks</RootNamespace>
+    <AssemblyName>SvgMath.Benchmarks</AssemblyName>
+    <IsPackable>false</IsPackable>
+    <!-- BenchmarkDotNet expects Release for stable timings -->
+    <Optimize Condition="'$(Configuration)'=='Release'">true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SvgMath\SvgMath.csproj" />
+  </ItemGroup>
+
+  <!-- Match test layout: cwd = output dir; static fontdata + shared config -->
+  <ItemGroup>
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\config_mml_samples.xml" Link="TestAssets\config_mml_samples.xml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\src\SvgMath\Configuration\fontdata\**\*.xml" Link="configuration\fontdata\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!-- Representative inputs (linked into Fixtures\) -->
+  <ItemGroup>
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\MmlSamples\test1.mml" Link="Fixtures\test1.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\TortureTests\Complexity\complex1.mml" Link="Fixtures\complex1.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\Characters\EntityNames\a.mml" Link="Fixtures\EntityNames_a.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\Presentation\GeneralLayout\mfrac\mfrac2.mml" Link="Fixtures\mfrac2.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\Presentation\TokenElements\mi\mi2.mml" Link="Fixtures\mi2.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\Presentation\TablesAndMatrices\mtable\mtable2.mml" Link="Fixtures\mtable2.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\Presentation\ScriptsAndLimits\mover\mover1.mml" Link="Fixtures\mover1.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\Topics\WhiteSpace\white9.mml" Link="Fixtures\white9.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\Presentation\GeneralLayout\mrow\mrow1.mml" Link="Fixtures\mrow1.mml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\test\SvgMath.Tests\TestAssets\w3tests\Presentation\TokenElements\mo\mo6.mml" Link="Fixtures\mo6.mml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

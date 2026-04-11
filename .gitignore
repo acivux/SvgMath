@@ -219,3 +219,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# BenchmarkDotNet (run from repo root or benchmark project)
+BenchmarkDotNet.Artifacts/
