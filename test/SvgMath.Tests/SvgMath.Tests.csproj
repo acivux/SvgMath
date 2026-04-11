@@ -9,6 +9,11 @@
     <AssemblyName>SvgMath.Tests</AssemblyName>
   </PropertyGroup>
 
+  <!-- Regenerate goldens: dotnet test with property GenerateGoldens=true and test filter WriteGoldenSvgFiles_ToSourceTree -->
+  <PropertyGroup Condition="'$(GenerateGoldens)'=='true'">
+    <DefineConstants>$(DefineConstants);GENERATE_GOLDENS</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="xunit" Version="2.9.2" />
